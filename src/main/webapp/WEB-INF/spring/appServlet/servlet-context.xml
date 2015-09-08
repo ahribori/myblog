@@ -15,14 +15,49 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<!-- Tiles 설정 -->
+	<beans:bean id="tilesConfig" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/spring/appServlet/tiles-config/tiles-*.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+		<beans:property name="order" value="0"/>
+	</beans:bean>
+	
+	<!-- beanNameViewResolver -->
+	<beans:bean id="beanNameViewResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"></beans:property>
+	</beans:bean>
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 컴포넌트 스캔 -->
 	<context:component-scan base-package="com.hs9923.blog" />
 	
+	<!-- Spring Validation -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="classpath:messages_ko"/>
+		<beans:property name="defaultEncoding" value="utf-8"/>
+	</beans:bean>
 	
-	
+	<!-- Interceptor -->
+	<!-- 
+	<interceptors>
+	<interceptor>
+		<mapping path="/**" />
+		<exclude-mapping path="/resources/**" />
+		<beans:bean class="org.kosta.devnote.common.web.AuthCheckInterceptor"/>
+	</interceptor>
+	</interceptors>
+	 -->
 </beans:beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- MultipartResolver (File Upload) -->
+	<bean id="filterMultipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<!-- -1은 제한 없음 5*1024*1024 -->
+		<property name="maxUploadSize" value="-1"></property>
+	</bean>
+
+	<!-- 파일다운로드를 위한 view를 설정 -->
+	<!-- <bean name="downloadView" class="org.kosta.springmvc26.controller.DownloadView"></bean> -->
+
+	<!-- upload path -->
+	<bean id="memberImg" class="java.lang.String">
+		<constructor-arg>
+			<value>resources\\images\\member\\</value>
+		</constructor-arg>
+	</bean>
+	<bean id="boardImg" class="java.lang.String">
+		<constructor-arg>
+			<value>resources\\images\\board\\</value>
+		</constructor-arg>
+	</bean>
+</beans>
