@@ -1,4 +1,4 @@
-package com.hs9923.blog;
+package com.hs9923.blog.web;
 
 import java.text.DateFormat;
 import java.util.Date;

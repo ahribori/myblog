@@ -42,7 +42,7 @@
 	</beans:bean>
 	
 	<!-- 컴포넌트 스캔 -->
-	<context:component-scan base-package="com.hs9923.blog" />
+	<context:component-scan base-package="com.hs9923.blog.web" />
 	
 	<!-- Spring Validation -->
 	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
