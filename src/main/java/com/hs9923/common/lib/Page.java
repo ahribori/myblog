@@ -144,7 +144,7 @@ public class Page {
 		
 		this.isLastPageGroup = (currentPageGroup == pageGroupCount) ? true : false;
 		
-		this.limit = this.beginPage - 1;
+		this.limit = this.beginRow - 1;
 	
 	}
 	
@@ -235,7 +235,7 @@ public class Page {
 				+ pageGroupCount + "\n ,currentPage=" + currentPage
 				+ ", currentPageGroup=" + currentPageGroup + ", beginRow="
 				+ beginRow + ", endRow=" + endRow + ", beginPage=" + beginPage
-				+ ", endPage=" + endPage + "\n" + ", isFirstPage=" + isFirstPage
+				+ ", endPage=" + endPage + ", limit=" + limit + "\n" + ", isFirstPage=" + isFirstPage
 				+ ", isLastPage=" + isLastPage + ", isFirstPageGroup=" + isFirstPageGroup
 				+ ", isLastPageGroup=" + isLastPageGroup + "]";
 	}
