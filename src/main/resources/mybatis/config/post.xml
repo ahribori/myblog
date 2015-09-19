@@ -53,6 +53,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select post_id,category_id,title,subtitle,writer,hits,reg_date,mod_date 
 		from post order by post_id desc limit #{limit},#{pageSize} 
 	</select>
+	
+	<update id="upHits">
+		update post set hits=#{hits} where post_id=#{postId}
+	</update>
+	
 </mapper>
  
  

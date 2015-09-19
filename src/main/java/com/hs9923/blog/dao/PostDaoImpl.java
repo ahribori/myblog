@@ -56,4 +56,9 @@ public class PostDaoImpl implements PostDao{
 		return sqlSessionTemplate.selectList("post.getPostsWithoutContent", page);
 	}
 
+	@Override
+	public void upHits(int postId) {
+		sqlSessionTemplate.update("post.upHits", postId);
+	}
+
 }

@@ -23,5 +23,6 @@ public interface PostDao {
 
 	public List<Post> getPostsWithoutContent(Page page);
 
+	public void upHits(int postId);
 
 }

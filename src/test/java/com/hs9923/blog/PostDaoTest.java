@@ -115,4 +115,14 @@ public class PostDaoTest {
 		assertNull(postDao.getPost(post.getPostId()));
 		log.info("delete post success.");
 	}
+	
+	@Test
+	public void testUpHits() {
+		post = postDao.getPost(post.getPostId());
+		int beforeHits = post.getHits();
+		postDao.upHits(post.getPostId());
+		post = postDao.getPost(post.getPostId());
+		int afterHits = post.getHits();
+		assertThat(afterHits, greaterThan(beforeHits));
+	}
 }
