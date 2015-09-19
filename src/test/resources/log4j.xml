@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.hs9923.blog">
-		<level value="info" />
+		<level value="debug" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
