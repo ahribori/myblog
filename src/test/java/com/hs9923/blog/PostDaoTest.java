@@ -3,6 +3,8 @@ package com.hs9923.blog;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hs9923.blog.dao.PostDao;
 import com.hs9923.blog.domain.Post;
+import com.hs9923.common.lib.Page;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
@@ -53,11 +56,47 @@ public class PostDaoTest {
 	}
 
 	@Test
-	public void TestGetPost() {
+	public void testGetPost() {
 		post = postDao.getPost(post.getPostId());
 		assertNotNull(post);
 		log.debug("{}", post);
 		
+	}
+	
+	@Test
+	public void testGetTotalCount() {
+		int totalCount = postDao.getTotalCount();
+		assertThat(totalCount, greaterThan(0));
+		log.info("totalCount = {}", totalCount);
+	}
+	
+	@Test
+	public void testGetPosts() {
+		for (int i = 0; i < 30; i++) {
+			this.insertPost();
+		}
+		Page page = new Page(postDao.getTotalCount());
+		List<Post> postList = postDao.getPosts(page);
+		assertNotNull(postList);
+		assertThat(postList.size(), greaterThan(0));
+		for (Post post : postList) {
+			log.debug("{}", post);
+		}
+		
+	}
+	
+	@Test
+	public void testGetPostsWithoutContent () {
+		for (int i = 0; i < 30; i++) {
+			this.insertPost();
+		}
+		Page page = new Page(postDao.getTotalCount());
+		List<Post> postList = postDao.getPostsWithoutContent(page);
+		assertNotNull(postList);
+		assertThat(postList.size(), greaterThan(0));
+		for (Post post : postList) {
+			log.debug("{}", post);
+		}
 	}
 	
 	@Test

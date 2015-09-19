@@ -31,6 +31,8 @@ public class Page {
 	
 	private int endPage; // 페이지그룹 끝 페이지 번호
 	
+	private int limit; // MYSQL limit
+	
 	
 	/*
 	 * 다음 변수들은 가독성을 위해 선언했습니다.
@@ -141,6 +143,8 @@ public class Page {
 		this.isFirstPageGroup = (currentPageGroup) == 1 ? true : false;
 		
 		this.isLastPageGroup = (currentPageGroup == pageGroupCount) ? true : false;
+		
+		this.limit = this.beginPage - 1;
 	
 	}
 	

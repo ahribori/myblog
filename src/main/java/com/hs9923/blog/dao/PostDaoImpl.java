@@ -1,10 +1,13 @@
 package com.hs9923.blog.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hs9923.blog.domain.Post;
+import com.hs9923.common.lib.Page;
 
 @Repository
 public class PostDaoImpl implements PostDao{
@@ -36,6 +39,21 @@ public class PostDaoImpl implements PostDao{
 	@Override
 	public void deleteAll() {
 		sqlSessionTemplate.delete("post.deleteAll");
+	}
+
+	@Override
+	public int getTotalCount() {
+		return sqlSessionTemplate.selectOne("post.getTotalCount");
+	}
+
+	@Override
+	public List<Post> getPosts(Page page) {
+		return sqlSessionTemplate.selectList("post.getPosts", page);
+	}
+
+	@Override
+	public List<Post> getPostsWithoutContent(Page page) {
+		return sqlSessionTemplate.selectList("post.getPostsWithoutContent", page);
 	}
 
 }

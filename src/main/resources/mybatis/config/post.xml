@@ -40,6 +40,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteAll">
 		truncate post
 	</delete>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from post
+	</select>
+	
+	<select id="getPosts" resultMap="postRM">
+		select * from post order by post_id desc limit #{limit},#{pageSize} 
+	</select>
+
+	<select id="getPostsWithoutContent" resultMap="postRM">
+		select post_id,category_id,title,subtitle,writer,hits,reg_date,mod_date 
+		from post order by post_id desc limit #{limit},#{pageSize} 
+	</select>
 </mapper>
  
  
