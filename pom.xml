@@ -266,6 +266,17 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+				<path>/blog</path>
+				<url>http://54.92.96.86:8080/manager/text</url>
+				<username>admin</username>
+				<password>1234</password>
+				</configuration> 
+			</plugin>
         </plugins>
     </build>
 </project>
