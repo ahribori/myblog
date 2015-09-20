@@ -1,9 +1,9 @@
-package com.hs9923.blog.dao;
+package com.aribori.blog.dao;
 
 import java.util.List;
 
-import com.hs9923.blog.domain.Post;
-import com.hs9923.common.lib.Page;
+import com.aribori.blog.domain.Post;
+import com.aribori.common.lib.Page;
 
 public interface PostDao {
 

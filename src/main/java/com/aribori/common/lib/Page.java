@@ -1,4 +1,4 @@
-package com.hs9923.common.lib;
+package com.aribori.common.lib;
 
 /**
  * Paging Bean

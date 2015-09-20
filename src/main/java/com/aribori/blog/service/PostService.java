@@ -1,10 +1,10 @@
-package com.hs9923.blog.service;
+package com.aribori.blog.service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import com.hs9923.blog.domain.Post;
-import com.hs9923.common.lib.ListContainer;
+import com.aribori.blog.domain.Post;
+import com.aribori.common.lib.ListContainer;
 
 public interface PostService {
 	

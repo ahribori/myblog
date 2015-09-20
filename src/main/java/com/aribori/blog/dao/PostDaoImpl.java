@@ -1,4 +1,4 @@
-package com.hs9923.blog.dao;
+package com.aribori.blog.dao;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hs9923.blog.domain.Post;
-import com.hs9923.common.lib.Page;
+import com.aribori.blog.domain.Post;
+import com.aribori.common.lib.Page;
 
 @Repository
 public class PostDaoImpl implements PostDao{

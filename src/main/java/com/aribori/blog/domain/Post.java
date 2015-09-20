@@ -1,4 +1,4 @@
-package com.hs9923.blog.domain;
+package com.aribori.blog.domain;
 
 import java.util.Date;
 

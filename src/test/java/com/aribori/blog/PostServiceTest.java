@@ -1,4 +1,4 @@
-package com.hs9923.blog;
+package com.aribori.blog;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hs9923.blog.dao.PostDao;
-import com.hs9923.blog.domain.Post;
-import com.hs9923.blog.service.PostService;
-import com.hs9923.common.lib.ListContainer;
+import com.aribori.blog.dao.PostDao;
+import com.aribori.blog.domain.Post;
+import com.aribori.blog.service.PostService;
+import com.aribori.common.lib.ListContainer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
