@@ -8,14 +8,8 @@
  -->
 <tiles-definitions>
 	<definition name="default" template="/WEB-INF/views/templates/layout_default.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp"/>
-		<put-attribute name="menu" value="/WEB-INF/views/templates/menu.jsp"/>
-		<put-attribute name="right" value="/WEB-INF/views/templates/right.jsp"/>
-		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp"/>
-	</definition>
-	<definition name="wide" template="/WEB-INF/views/templates/layout_wide.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/templates/header.jsp"/>
-		<put-attribute name="menu" value="/WEB-INF/views/templates/menu.jsp"/>
+		<put-attribute name="sidebar" value="/WEB-INF/views/templates/sidebar.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/views/templates/nav.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/templates/footer.jsp"/>
 	</definition>
 </tiles-definitions>
