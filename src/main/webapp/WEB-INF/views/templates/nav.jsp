@@ -10,7 +10,7 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand logo">B</a>
+        <a href="${initParam.root}" class="navbar-brand logo">B</a>
     	</div>
     	<nav class="collapse navbar-collapse" role="navigation">
       <form class="navbar-form navbar-left">
@@ -23,7 +23,7 @@
     </form>
     <ul class="nav navbar-nav">
       <li>
-        <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+        <a href="${initParam.root}"><i class="glyphicon glyphicon-home"></i> Home</a>
       </li>
       <li>
         <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
@@ -36,11 +36,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
         <ul class="dropdown-menu">
-          <li><a href="">More</a></li>
-          <li><a href="">More</a></li>
-          <li><a href="">More</a></li>
-          <li><a href="">More</a></li>
-          <li><a href="">More</a></li>
+          <li><a href="">로그인</a></li>
         </ul>
       </li>
     </ul>

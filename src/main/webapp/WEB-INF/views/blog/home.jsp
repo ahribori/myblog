@@ -4,31 +4,108 @@
 <!DOCTYPE html>
 <!-- main col left --> 
 <div class="col-sm-5">
- 
-    <div class="panel panel-default">
-      <div class="panel-thumbnail"><img src="/assets/example/bg_5.jpg" class="img-responsive"></div>
-      <div class="panel-body">
-        <p class="lead">Urbanization</p>
-        <p>45 Followers, 13 Posts</p>
-        
-        <p>
-          <img src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s28" width="28px" height="28px">
-        </p>
-      </div>
+ 	
+ 	<div class="panel panel-default">
+      <div class="panel-heading"><h4>아리보리's 블로그?</h4></div>
+      	<div class="panel-thumbnail"><img src="${initParam.root}resources/images/home/aribori.jpg" class="img-responsive"></div>
+     	<div class="panel-body">
+	   	취업준비를 하게되면서 새로 시작하게 된 토비의 스프링 스터디와 함께,
+	   	새로 시작하는 개인 프로젝트이다. 블로그를 하나 가지고 싶었는데, 개발자라면 적어도
+	   	자신의 블로그 정도는 직접 만드는 것이 애착도 가고 의미 있을 것 같아서 시작하게 되었다.<br>
+	   	블로그를 만들어 나가는 과정, 프로그래밍 스터디, 아리와 보리의 이야기, 피아노 연주 동영상 등을 포스팅 할 예정이다.
+	   	</div>
     </div>
+ 	
+ 	<div class="panel panel-default">
+      <div class="panel-heading"><h4>Powered By</h4></div>
+     	<div class="panel-body">
+	   	- Java 1.7<br>
+	   	- Spring Framework 4.x.x<br>
+	   	- MySQL 5.x or MariaDB<br>
+	   	- MyBatis (Spring Data JPA or Hibernate와 고민중)<br>
+	   	- Tiles<br>
+	   	- BootStrap<br>
+	   	- Maven<br>
+	   	- require.js<br>
+	   	- angular.js<br>
+	   	- ElasticSearch<br><br>
+	   	
+	   	- 형상관리는 Git (Github) <a href="https://github.com/hs9923/myblog" target="_blank">https://github.com/hs9923/myblog</a><br>
+	   	- Task 관리는 Trello, Google Drive
+	   	</div>
+    </div> 	
+ 	
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>본인소개</h4></div>
+     	<div class="panel-body">
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	<span class="label label-primary">정현승</span> 
+		<span class="label label-success">27</span> 
+		<span class="label label-info">남자</span> 
+		<span class="label label-warning">백수</span> 
+		<span class="label label-danger">취준생</span>
+	   	</div>
+    </div> 	
 
- 
-    <div class="panel panel-default">
-      <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootstrap Examples</h4></div>
-        <div class="panel-body">
-          <div class="list-group">
-            <a href="http://bootply.com/tagged/modal" class="list-group-item">Modal / Dialog</a>
-            <a href="http://bootply.com/tagged/datetime" class="list-group-item">Datetime Examples</a>
-            <a href="http://bootply.com/tagged/datatable" class="list-group-item">Data Grids</a>
-          </div>
-        </div>
-    </div>
- 
     <div class="well"> 
          <form class="form-horizontal" role="form">
           <h4>What's New</h4>
@@ -38,24 +115,6 @@
           <button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
         </form>
     </div>
- 
-    <div class="panel panel-default">
-       <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>More Templates</h4></div>
-        <div class="panel-body">
-          <img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Free @Bootply</a>
-          <div class="clearfix"></div>
-          There a load of new free Bootstrap 3 ready templates at Bootply. All of these templates are free and don't require extensive customization to the Bootstrap baseline.
-          <hr>
-          <ul class="list-unstyled"><li><a href="http://www.bootply.com/templates">Dashboard</a></li><li><a href="http://www.bootply.com/templates">Darkside</a></li><li><a href="http://www.bootply.com/templates">Greenfield</a></li></ul>
-        </div>
-    </div>
- 
-    <div class="panel panel-default">
-      <div class="panel-heading"><h4>What Is Bootstrap?</h4></div>
-     	<div class="panel-body">
-      	Bootstrap is front end frameworkto build custom web applications that are fast, responsive &amp; intuitive. It consist of CSS and HTML for typography, forms, buttons, tables, grids, and navigation along with custom-built jQuery plug-ins and support for responsive layouts. With dozens of reusable components for navigation, pagination, labels, alerts etc..                          </div>
-    </div>
- 	
 
     <div class="well"> 
        <form class="form">
@@ -74,20 +133,20 @@
 	<!-- Post -->
 	<c:forEach var="post" items="${listContainer.list}">
      <div class="panel panel-default">
-       <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>#${post.postId}. ${post.title} &amp; Code Library</h4> 
-       	<span class="label label-default">#Default</span> 
-		<span class="label label-primary">#Primary</span> 
-		<span class="label label-success">#Success</span> 
-		<span class="label label-info">#Info</span> 
-		<span class="label label-warning">#Warning</span> 
-		<span class="label label-danger">#Danger</span></div>
+       <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>#${post.postId}. ${post.title}</h4> 
+       	<span class="label label-default">#태그1</span> 
+		<span class="label label-primary">#태그2</span> 
+		<span class="label label-success">#태그3</span> 
+		<span class="label label-info">#태그4</span> 
+		<span class="label label-warning">#태그5</span> 
+		<span class="label label-danger">#태그6</span></div>
         <div class="panel-body">
-          <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">The Bootstrap Playground</a></p>
+          <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">${post.content}</a></p>
           <div class="clearfix"></div>
           <hr>
-          <i class="glyphicon glyphicon glyphicon glyphicon-time"></i>
-          <i class="glyphicon glyphicon glyphicon-eye-open"></i>
+          <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
           <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
+          <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
         </div>
      </div>
 	</c:forEach>

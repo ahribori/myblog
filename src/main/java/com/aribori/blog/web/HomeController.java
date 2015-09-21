@@ -14,13 +14,7 @@ public class HomeController {
 	@Autowired
 	PostService postService;
 	
-	
 	@RequestMapping(value="/")
-	public String index() {
-		return "redirect:/home";
-	}
-	
-	@RequestMapping(value="/home")
 	public String home (Model model) {
 		ListContainer container = postService.getPosts(1, 5, 5);
 		model.addAttribute("listContainer", container);
