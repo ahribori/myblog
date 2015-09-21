@@ -12,6 +12,10 @@
 		<param-name>root</param-name>
 		<param-value>/blog/</param-value>
 	</context-param>
+	<context-param>
+		<param-name>home</param-name>
+		<param-value>http://aribori.com</param-value>
+	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
