@@ -62,10 +62,24 @@ public class PostServiceImpl implements PostService{
 		List<Post> postList = postDao.getPosts(page);
 		return new ListContainer(postList, page);
 	}
+	
+	@Override
+	public ListContainer getPosts(int currentPage, int pageSize, int pageGroupSize) {
+		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCount());
+		List<Post> postList = postDao.getPosts(page);
+		return new ListContainer(postList, page);
+	}
 
 	@Override
 	public ListContainer getPostsWithoutContent(int currentPage) {
 		Page page = new Page(currentPage, postDao.getTotalCount());
+		List<Post> postList = postDao.getPostsWithoutContent(page);
+		return new ListContainer(postList, page);
+	}
+	
+	@Override
+	public ListContainer getPostsWithoutContent(int currentPage, int pageSize, int pageGroupSize) {
+		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCount());
 		List<Post> postList = postDao.getPostsWithoutContent(page);
 		return new ListContainer(postList, page);
 	}

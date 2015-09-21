@@ -21,12 +21,7 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
-	@RequestMapping(value="/")
-	public String home (Model model) {
-		//TODO model setting
-		return "blog/home";
-	}
-	
+
 	@RequestMapping(value="/post/{id}", method=RequestMethod.GET)
 	public String getPost(@PathVariable String id, Model model,
 			@CookieValue(value = "getPostLog", required = false) Cookie cookie, 
@@ -41,7 +36,7 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/posts/{page}" )
-	public String getPost(@PathVariable String page, Model model) {
+	public String getPosts(@PathVariable String page, Model model) {
 		
 		if(page == null)
 			model.addAttribute("listContainer", postService.getPosts(1));

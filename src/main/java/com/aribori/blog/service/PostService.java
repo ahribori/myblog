@@ -18,6 +18,11 @@ public interface PostService {
 	
 	public ListContainer getPosts(int currentPage);
 
+	public ListContainer getPosts(int currentPage, int pageSize, int pageGroupSize);
+	
 	public ListContainer getPostsWithoutContent(int currentPage);
+
+	public ListContainer getPostsWithoutContent(int currentPage, int pageSize, int pageGroupSize);
+
 
 }
