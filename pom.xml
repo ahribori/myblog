@@ -274,7 +274,7 @@
 				<path>/blog</path>
 				<url>http://54.92.96.86:8080/manager/text</url>
 				<username>admin</username>
-				<password>1234</password>
+				<password>aribori1234</password>
 				</configuration> 
 			</plugin>
         </plugins>

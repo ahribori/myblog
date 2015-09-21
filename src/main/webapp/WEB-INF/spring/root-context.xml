@@ -16,7 +16,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/myblog"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="1234"></property>
+		<property name="password" value="aribori1234"></property>
 		<property name="maxActive" value="50"></property>
 		<!-- 특정 시간마다 validationQuery를 실행 셋팅 시작 -->
         <property name="validationQuery" value="select 1"/>
