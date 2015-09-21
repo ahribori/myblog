@@ -10,7 +10,7 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
         </button>
-        <a href="${initParam.root}" class="navbar-brand logo">B</a>
+        <a style="width: 145px" href="${initParam.root}" class="navbar-brand logo">ARIBORI.COM</a>
     	</div>
     	<nav class="collapse navbar-collapse" role="navigation">
       <form class="navbar-form navbar-left">

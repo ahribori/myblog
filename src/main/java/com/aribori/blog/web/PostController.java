@@ -26,50 +26,40 @@ public class PostController {
 	public String getPost(@PathVariable String id, Model model,
 			@CookieValue(value = "getPostLog", required = false) Cookie cookie, 
 			HttpServletResponse response) {
-		
 		if (id != null) {
 			int postId = Integer.parseInt(id);
 			model.addAttribute("post", postService.getPost(postId, cookie, response));
 		}
-		
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/posts/{page}" )
 	public String getPosts(@PathVariable String page, Model model) {
-		
 		if(page == null)
 			model.addAttribute("listContainer", postService.getPosts(1));
 		else
 			model.addAttribute("listContainer", postService.getPosts(Integer.parseInt(page)));
-			
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/post", method=RequestMethod.POST)
 	public String insertPost(Post post) {
-		
 		postService.insertPost(post);
-		
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/post", method=RequestMethod.PUT)
 	public String updatePost(Post post) {
-		
 		postService.updatePost(post);
-		
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/post/{id}", method=RequestMethod.DELETE)
 	public String deletePost(@PathVariable String id) {
-		
 		if (id != null) {
 			int postId = Integer.parseInt(id);
 			postService.deletePost(postId);
 		}
-		
 		return "redirect:/";
 	}
 	

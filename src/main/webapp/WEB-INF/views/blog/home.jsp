@@ -43,87 +43,44 @@
 		<span class="label label-info">남자</span> 
 		<span class="label label-warning">백수</span> 
 		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
-	   	<span class="label label-primary">정현승</span> 
-		<span class="label label-success">27</span> 
-		<span class="label label-info">남자</span> 
-		<span class="label label-warning">백수</span> 
-		<span class="label label-danger">취준생</span>
+	   	</div>
+    </div> 	
+    
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>#태그</h4></div>
+     	<div class="panel-body">
+	   	<span class="label label-primary">#태그</span> 
+		<span class="label label-success">#태그</span> 
+		<span class="label label-info">#태그</span> 
+		<span class="label label-warning">#태그</span> 
+		<span class="label label-danger">#태그</span>
+	   	<span class="label label-primary">#태그</span> 
+		<span class="label label-success">#태그</span> 
+		<span class="label label-info">#태그</span> 
+		<span class="label label-warning">#태그</span> 
+		<span class="label label-danger">#태그</span>
+	   	<span class="label label-primary">#태그</span> 
+		<span class="label label-success">#태그</span> 
+		<span class="label label-info">#태그</span> 
+		<span class="label label-warning">#태그</span> 
+		<span class="label label-danger">#태그</span>
+	   	<span class="label label-primary">#태그</span> 
+		<span class="label label-success">#태그</span> 
+		<span class="label label-info">#태그</span> 
+		<span class="label label-warning">#태그</span> 
+		<span class="label label-danger">#태그</span>
 	   	</div>
     </div> 	
 
     <div class="well"> 
          <form class="form-horizontal" role="form">
-          <h4>What's New</h4>
+          <h4>Contact Me!</h4>
            <div class="form-group" style="padding:14px;">
-            <textarea class="form-control" placeholder="Update your status"></textarea>
+	        <input type="email" class="form-control" placeholder="연락받으실 E-Mail 주소를 입력하세요"><br>
+            <textarea rows="6" class="form-control" placeholder="메세지를 입력하세요"></textarea>
           </div>
-          <button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+          <button class="btn btn-primary pull-right" type="button">보내기</button><ul class="list-inline"><li><a href=""></a></li></ul>
         </form>
-    </div>
-
-    <div class="well"> 
-       <form class="form">
-        <h4>Sign-up</h4>
-        <div class="input-group text-center">
-        <input type="text" class="form-control input-lg" placeholder="Enter your email address">
-          <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="button">OK</button></span>
-        </div>
-      </form>
     </div>
  	
 </div>
@@ -150,7 +107,7 @@
         </div>
      </div>
 	</c:forEach>
-     <!-- /Post -->
+    <!-- /Post -->
      <div class="panel panel-default">
        <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
         <div class="panel-body">

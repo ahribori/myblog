@@ -12,7 +12,7 @@
 	<div class="col-sm-6"></div>
 	<div class="col-sm-6">
 		<p>
-			<a href="#" class="pull-right">©Copyright 2013</a>
+			<a href="#" class="pull-right">©Copyright 2015</a>
 		</p>
 	</div>
 </div>
@@ -20,7 +20,7 @@
 <hr>
 
 <h4 class="text-center">
-	<a href="http://bootply.com/96266" target="ext">Download this Template @Bootply</a>
+	ARIBORI.COM
 </h4>
 
 <hr>
