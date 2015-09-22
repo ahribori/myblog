@@ -96,10 +96,12 @@ public class PostServiceImpl implements PostService{
 		String text = null;
 		Document doc = Jsoup.parseBodyFragment(content);
 		text = new HtmlToPlainText().getPlainText(doc);
-		if (text.length()>200) {
+		if (text!=null && text.length()>200) {
 			text = text.substring(0, 200);
-			text += "... <span class='label label-default'>내용 전체 보기</span>";
+		} else if (text!=null && text.trim().length()==0) {
+			text += "본문에 TEXT가 없습니다.";
 		}
+		text += "... <span class='label label-default'>내용 전체 보기</span>";
 		return text;
 	}
 

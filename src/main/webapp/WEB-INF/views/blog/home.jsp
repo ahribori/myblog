@@ -90,7 +90,8 @@
 	<!-- Post -->
 	<c:forEach var="post" items="${listContainer.list}">
      <div class="panel panel-default">
-       	<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>#${post.postId}. ${post.title}</h4> 
+       	<div class="panel-heading"><a href="#" class="pull-right">View all</a> 
+       	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
 	       	<span class="label label-default">#태그1</span> 
 			<span class="label label-primary">#태그2</span> 
 			<span class="label label-success">#태그3</span> 

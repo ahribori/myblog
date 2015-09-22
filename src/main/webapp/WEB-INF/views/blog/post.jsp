@@ -25,7 +25,6 @@
 	${post.content}
 	</div>
 </div>
-
 <script type="text/javascript">
 	function remove_post() {
 		var flag = confirm('정말 삭제하시겠습니까?');

@@ -11,6 +11,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link href="${initParam.root}resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${initParam.root}resources/css/styles.css" rel="stylesheet">
+	
+	<!-- script references -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="${initParam.root}resources/js/bootstrap.min.js"></script>
+	<script src="${initParam.root}resources/js/scripts.js"></script>
+	
 </head>
 <body>
 <div class="wrapper">
@@ -37,9 +43,5 @@
 		</div>
 	</div>
 </div>
-<!-- script references -->
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="${initParam.root}resources/js/bootstrap.min.js"></script>
-<script src="${initParam.root}resources/js/scripts.js"></script>
 </body>
 </html>

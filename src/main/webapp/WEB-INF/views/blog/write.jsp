@@ -18,6 +18,8 @@
     
 </form>
 
+<script src="${initParam.root}resources/js/application.js"></script>
+
 <script>
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.

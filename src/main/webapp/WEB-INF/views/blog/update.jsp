@@ -19,8 +19,25 @@
     
 </form:form>
 
+
 <script>
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace( 'editor1' );
+	//Replace the <textarea id="editor1"> with a CKEditor
+	// instance, using default configuration.
+	CKEDITOR.replace( 'editor1',{
+		height:'400px',
+		'filebrowserImageUploadUrl':'/blog/post/imageUpload'
+	});
+	
+	CKEDITOR.on('dialogDefinition', function( ev ){
+	    var dialogName = ev.data.name;
+	    var dialogDefinition = ev.data.definition;
+	  
+	    switch (dialogName) {
+	        case 'image': //Image Properties dialog
+	            //dialogDefinition.removeContents('info');
+	            dialogDefinition.removeContents('Link');
+	            dialogDefinition.removeContents('advanced');
+	            break;
+	    }
+	});
 </script>
