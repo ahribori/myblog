@@ -70,7 +70,13 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/post/write", method=RequestMethod.POST)
-	public String getWritePage() {
+	public String getWriteForm() {
 		return "blog/write";
+	}
+	
+	@RequestMapping(value="/post/update", method=RequestMethod.PUT)
+	public String getUpdateForm(int postId, Model model) {
+		model.addAttribute("post", postService.getPostNoHits(postId));
+		return "blog/update";
 	}
 }

@@ -50,6 +50,11 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
+	public Post getPostNoHits(int postId) {
+		return postDao.getPost(postId);
+	}
+
+	@Override
 	public void updatePost(Post post) {
 		postDao.updatePost(post);
 	}

@@ -12,6 +12,8 @@ public interface PostService {
 
 	public Post getPost(int postId, Cookie cookie, HttpServletResponse response);
 
+	public Post getPostNoHits(int postId);
+
 	public void updatePost(Post post);
 
 	public void deletePost(int postId);
@@ -19,5 +21,6 @@ public interface PostService {
 	public ListContainer getPosts(int currentPage);
 
 	public ListContainer getPosts(int currentPage, int pageSize, int pageGroupSize);
+
 	
 }
