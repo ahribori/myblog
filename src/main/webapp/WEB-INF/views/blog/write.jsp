@@ -8,11 +8,9 @@
 	
 	<input type="text" name="title" class="form-control" placeholder="제목을 입력하세요"><br>
 
-	<input type="text" name="tags" class="form-control" placeholder="#태그를 등록하세요"><br>
+	<input type="text" name="tags" class="form-control" placeholder="#태그를 등록하세요(미구현)"><br>
 	
-    <textarea name="content" id="editor1" rows="10" cols="80">
-        This is my textarea to be replaced with CKEditor.
-    </textarea>
+    <textarea name="content" id="editor1" rows="10" cols="80"></textarea>
     
     <label></label>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
