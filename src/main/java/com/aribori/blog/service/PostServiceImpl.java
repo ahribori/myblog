@@ -5,6 +5,9 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jsoup.Jsoup;
+import org.jsoup.examples.HtmlToPlainText;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +63,9 @@ public class PostServiceImpl implements PostService{
 	public ListContainer getPosts(int currentPage) {
 		Page page = new Page(currentPage, postDao.getTotalCount());
 		List<Post> postList = postDao.getPosts(page);
+		for (Post post : postList) {
+			post.setContent(makeContentThumbnail(post.getContent()));
+		}
 		return new ListContainer(postList, page);
 	}
 	
@@ -67,22 +73,21 @@ public class PostServiceImpl implements PostService{
 	public ListContainer getPosts(int currentPage, int pageSize, int pageGroupSize) {
 		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCount());
 		List<Post> postList = postDao.getPosts(page);
-		return new ListContainer(postList, page);
-	}
-
-	@Override
-	public ListContainer getPostsWithoutContent(int currentPage) {
-		Page page = new Page(currentPage, postDao.getTotalCount());
-		List<Post> postList = postDao.getPostsWithoutContent(page);
+		for (Post post : postList) {
+			post.setContent(makeContentThumbnail(post.getContent()));
+		}
 		return new ListContainer(postList, page);
 	}
 	
-	@Override
-	public ListContainer getPostsWithoutContent(int currentPage, int pageSize, int pageGroupSize) {
-		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCount());
-		List<Post> postList = postDao.getPostsWithoutContent(page);
-		return new ListContainer(postList, page);
+	public String makeContentThumbnail(String content) {
+		String text = null;
+		Document doc = Jsoup.parseBodyFragment(content);
+		text = new HtmlToPlainText().getPlainText(doc);
+		if (text.length()>200) {
+			text = text.substring(0, 200);
+			text += "... <span class='label label-default'>내용 전체 보기</span>";
+		}
+		return text;
 	}
-
 
 }

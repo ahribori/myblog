@@ -90,13 +90,14 @@
 	<!-- Post -->
 	<c:forEach var="post" items="${listContainer.list}">
      <div class="panel panel-default">
-       <div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>#${post.postId}. ${post.title}</h4> 
-       	<span class="label label-default">#태그1</span> 
-		<span class="label label-primary">#태그2</span> 
-		<span class="label label-success">#태그3</span> 
-		<span class="label label-info">#태그4</span> 
-		<span class="label label-warning">#태그5</span> 
-		<span class="label label-danger">#태그6</span></div>
+       	<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>#${post.postId}. ${post.title}</h4> 
+	       	<span class="label label-default">#태그1</span> 
+			<span class="label label-primary">#태그2</span> 
+			<span class="label label-success">#태그3</span> 
+			<span class="label label-info">#태그4</span> 
+			<span class="label label-warning">#태그5</span> 
+			<span class="label label-danger">#태그6</span>
+	    </div>
         <div class="panel-body">
           <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="${initParam.root}post/${post.postId}">${post.content}</a></p>
           <div class="clearfix"></div>

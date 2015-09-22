@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.examples.HtmlToPlainText;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -92,17 +96,12 @@ public class PostServiceTest {
 	}
 	
 	@Test
-	public void testGetPostsWithoutContent () {
-		for (int i = 0; i < 30; i++) {
-			this.insertPost();
-		}
-		ListContainer container = postService.getPostsWithoutContent(1);
-		assertNotNull(container);
-		assertThat(container.getList().size(), greaterThan(0));
-		List<Post> postList = (List<Post>) container.getList();
-		for (Post post : postList) {
-			log.debug("{}", post);
-		}
+	public void testJSOUP() {
+		String html = "<p>hello</p><img src=sdfsdf><pre><code>publilcvoid</code></pre>";
+		Document doc = Jsoup.parseBodyFragment(html);
+		HtmlToPlainText htpt = new HtmlToPlainText();
+		String text = htpt.getPlainText(doc);
+		System.out.println("Text="+text);
 	}
 
 }

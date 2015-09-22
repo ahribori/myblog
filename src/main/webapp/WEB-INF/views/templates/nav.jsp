@@ -15,7 +15,7 @@
     	<nav class="collapse navbar-collapse" role="navigation">
       <form class="navbar-form navbar-left">
           <div class="input-group input-group-sm" style="max-width:360px;">
-          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+          <input type="text" class="form-control" placeholder="검색" name="srch-term" id="srch-term">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
           </div>
@@ -23,15 +23,15 @@
     </form>
     <ul class="nav navbar-nav">
       <li>
-        <a href="${initParam.home}"><i class="glyphicon glyphicon-home"></i> Home</a>
+        <a href="${initParam.home}"><i class="glyphicon glyphicon-home"></i> 홈</a>
       </li>
       <li>
         <!--<a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>-->
-        <a href="javascript:document.write.submit()" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
+        <a href="javascript:document.write.submit()" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> 새 글 쓰기</a>
         <form name="write" action="${initParam.root}post/write" method="post"></form>
       </li>
       <li>
-        <a href="#"><span class="badge">badge</span></a>
+        <!-- <a href="#"><span class="badge">badge</span></a> -->
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

@@ -52,11 +52,6 @@ public class PostDaoImpl implements PostDao{
 	}
 
 	@Override
-	public List<Post> getPostsWithoutContent(Page page) {
-		return sqlSessionTemplate.selectList("post.getPostsWithoutContent", page);
-	}
-
-	@Override
 	public void upHits(int postId) {
 		sqlSessionTemplate.update("post.upHits", postId);
 	}

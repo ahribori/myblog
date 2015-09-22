@@ -86,20 +86,6 @@ public class PostDaoTest {
 	}
 	
 	@Test
-	public void testGetPostsWithoutContent () {
-		for (int i = 0; i < 30; i++) {
-			this.insertPost();
-		}
-		Page page = new Page(postDao.getTotalCount());
-		List<Post> postList = postDao.getPostsWithoutContent(page);
-		assertNotNull(postList);
-		assertThat(postList.size(), greaterThan(0));
-		for (Post post : postList) {
-			log.debug("{}", post);
-		}
-	}
-	
-	@Test
 	public void testUpdatePost() {
 		int beforeHits = post.getHits();
 		post.setHits(beforeHits + 1);
