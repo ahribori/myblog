@@ -27,10 +27,14 @@ public class PostController {
 			@CookieValue(value = "getPostLog", required = false) Cookie cookie, 
 			HttpServletResponse response) {
 		if (id != null) {
-			int postId = Integer.parseInt(id);
-			model.addAttribute("post", postService.getPost(postId, cookie, response));
+			try {
+				int postId = Integer.parseInt(id);
+				model.addAttribute("post", postService.getPost(postId, cookie, response));
+			} catch (NumberFormatException e) {
+				return "redirect:/";
+			}
 		}
-		return "redirect:/";
+		return "blog/post";
 	}
 	
 	@RequestMapping(value="/posts/{page}" )
@@ -44,6 +48,8 @@ public class PostController {
 	
 	@RequestMapping(value="/post", method=RequestMethod.POST)
 	public String insertPost(Post post) {
+		//TODO 회원/관리자 구현 후에 이 라인 수정해야함
+		post.setWriter("아리보리");
 		postService.insertPost(post);
 		return "redirect:/";
 	}
@@ -63,7 +69,7 @@ public class PostController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/post/write", method=RequestMethod.GET)
+	@RequestMapping(value="/post/write", method=RequestMethod.POST)
 	public String getWritePage() {
 		return "blog/write";
 	}

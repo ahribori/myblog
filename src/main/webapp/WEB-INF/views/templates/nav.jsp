@@ -26,7 +26,9 @@
         <a href="${initParam.home}"><i class="glyphicon glyphicon-home"></i> Home</a>
       </li>
       <li>
-        <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
+        <!--<a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>-->
+        <a href="javascript:document.write.submit()" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
+        <form name="write" action="${initParam.root}post/write" method="post"></form>
       </li>
       <li>
         <a href="#"><span class="badge">badge</span></a>

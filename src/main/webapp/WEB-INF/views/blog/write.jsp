@@ -1,14 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<script src="//cdn.ckeditor.com/4.5.3/full/ckeditor.js"></script>
-<form>
-    <textarea name="editor1" id="editor1" rows="10" cols="80">
+
+<script src="${initParam.root}resources/ckeditor/ckeditor.js"></script>
+
+<form action="${initParam.root}post" method="post">
+	
+	<input type="text" name="title" class="form-control" placeholder="제목을 입력하세요"><br>
+
+	<input type="text" name="tags" class="form-control" placeholder="#태그를 등록하세요"><br>
+	
+    <textarea name="content" id="editor1" rows="10" cols="80">
         This is my textarea to be replaced with CKEditor.
     </textarea>
-    <script>
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace( 'editor1' );
-    </script>
+    
+    <label></label>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
+    <label></label>
+    
 </form>
+
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editor1' );
+</script>

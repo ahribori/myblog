@@ -98,7 +98,7 @@
 		<span class="label label-warning">#태그5</span> 
 		<span class="label label-danger">#태그6</span></div>
         <div class="panel-body">
-          <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">${post.content}</a></p>
+          <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="${initParam.root}post/${post.postId}">${post.content}</a></p>
           <div class="clearfix"></div>
           <hr>
           <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
