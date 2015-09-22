@@ -1,8 +1,15 @@
 package com.aribori.blog.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
@@ -10,6 +17,7 @@ import org.jsoup.examples.HtmlToPlainText;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aribori.blog.dao.PostDao;
 import com.aribori.blog.domain.Post;
@@ -95,4 +103,52 @@ public class PostServiceImpl implements PostService{
 		return text;
 	}
 
+	@Override
+	public void imageUpload(HttpServletRequest request,
+			HttpServletResponse response, MultipartFile upload) {
+		
+		if(upload!=null && upload.getSize()!=0) {
+			
+			// resources/images/post
+			String contextPath = "resources" + File.separator + "images" + File.separator +"post" + File.separator;
+			System.out.println("contextPath = " + contextPath);
+			// 파일이 저장될 서버 경로
+			String realPath = new HttpServletRequestWrapper(request).getRealPath("/") + contextPath;
+			System.out.println("realPath = " + realPath);
+			new File(realPath).mkdirs();
+		
+			
+			PrintWriter printWriter = null; 
+			
+			try {
+				// 확장자 추출
+				String originalFileName = upload.getOriginalFilename();
+				String extension = originalFileName.substring(originalFileName.lastIndexOf(".")+1);
+				// 파일 업로드
+				long currentTime = System.currentTimeMillis();
+				Date date = new Date(currentTime);
+				SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMdd_"+currentTime);
+				upload.transferTo(new File(realPath + sdf.format(date) + "." + extension));
+				String imgFileName = sdf.format(date) + "." + extension;
+				String callback = request.getParameter("CKEditorFuncNum");
+					printWriter = response.getWriter();
+		        
+		        // <img src="이곳에 들어갈 파일 경로">
+		        String fileUrl = "/blog/resources/images/post/" + imgFileName;//url경로
+		
+		        printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
+		                + callback
+		                + ",'"
+		                + fileUrl
+		                + "','이미지를 업로드 하였습니다.'"
+		                + ")</script>");
+		        
+	        } catch (IOException e) {
+	        	e.printStackTrace();
+	        } finally {
+	        	printWriter.flush();
+	        } // try-catch end
+			
+		} // if end
+	}
 }

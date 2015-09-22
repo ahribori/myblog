@@ -5,7 +5,7 @@
 
 <script src="${initParam.root}resources/ckeditor/ckeditor.js"></script>
 
-<form:form action="${initParam.root}post" method="put">
+<form:form action="${initParam.root}post/${post.postId}" method="put">
 	
 	<input type="text" name="title" value="${post.title}" class="form-control" placeholder="제목을 입력하세요"><br>
 

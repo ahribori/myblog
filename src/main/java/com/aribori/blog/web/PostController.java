@@ -1,6 +1,7 @@
 package com.aribori.blog.web;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aribori.blog.domain.Post;
 import com.aribori.blog.service.PostService;
-import com.aribori.common.lib.ListContainer;
 
 @Controller
 public class PostController {
@@ -54,10 +55,14 @@ public class PostController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/post", method=RequestMethod.PUT)
-	public String updatePost(Post post) {
-		postService.updatePost(post);
-		return "redirect:/";
+	@RequestMapping(value="/post/{id}", method=RequestMethod.PUT)
+	public String updatePost(@PathVariable String id, Post post) {
+		if (id != null) {
+			int postId = Integer.parseInt(id);
+			post.setPostId(postId);
+			postService.updatePost(post);
+		}
+		return "redirect:/post/"+post.getPostId();
 	}
 	
 	@RequestMapping(value="/post/{id}", method=RequestMethod.DELETE)
@@ -78,5 +83,11 @@ public class PostController {
 	public String getUpdateForm(int postId, Model model) {
 		model.addAttribute("post", postService.getPostNoHits(postId));
 		return "blog/update";
+	}
+	
+	@RequestMapping(value="/post/imageUpload", method=RequestMethod.POST)
+	public void imageUpload(HttpServletRequest request, HttpServletResponse response, 
+			MultipartFile upload) {
+		postService.imageUpload(request, response, upload);
 	}
 }
