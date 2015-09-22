@@ -63,4 +63,8 @@ public class PostController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/post/write", method=RequestMethod.GET)
+	public String getWritePage() {
+		return "blog/write";
+	}
 }
