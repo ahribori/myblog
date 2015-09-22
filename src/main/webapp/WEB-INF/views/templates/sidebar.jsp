@@ -16,7 +16,7 @@
     </ul>
     <ul class="list-unstyled hidden-xs" id="sidebar-footer">
         <li>
-          <a href="${initParam.home}"><h3>아리보리's 블로그</h3> <i class="glyphicon glyphicon-heart-empty"></i> aribori.com</a>
+          <a href="${initParam.root}"><h3>아리보리's 블로그</h3> <i class="glyphicon glyphicon-heart-empty"></i> aribori.com</a>
         </li>
     </ul>
   

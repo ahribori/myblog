@@ -10,7 +10,7 @@
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
         </button>
-        <a style="width: 145px" href="${initParam.home}" class="navbar-brand logo">ARIBORI.COM</a>
+        <a style="width: 145px" href="${initParam.root}" class="navbar-brand logo">ARIBORI.COM</a>
     	</div>
     	<nav class="collapse navbar-collapse" role="navigation">
       <form class="navbar-form navbar-left">
@@ -23,7 +23,7 @@
     </form>
     <ul class="nav navbar-nav">
       <li>
-        <a href="${initParam.home}"><i class="glyphicon glyphicon-home"></i> 홈</a>
+        <a href="${initParam.root}"><i class="glyphicon glyphicon-home"></i> 홈</a>
       </li>
       <li>
         <!--<a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>-->
