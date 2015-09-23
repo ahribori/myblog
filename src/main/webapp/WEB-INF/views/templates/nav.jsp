@@ -31,6 +31,9 @@
         <form name="write" action="${initParam.root}post/write" method="post"></form>
       </li>
       <li>
+      	<a href="${initParam.root}category/config"><i class="glyphicon glyphicon-list"></i> 카테고리 관리</a>
+      </li>
+      <li>
         <!-- <a href="#"><span class="badge">badge</span></a> -->
       </li>
     </ul>

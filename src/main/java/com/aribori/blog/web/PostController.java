@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aribori.blog.domain.Post;
+import com.aribori.blog.service.CategoryService;
 import com.aribori.blog.service.PostService;
 
 @Controller
@@ -22,6 +23,12 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
+	public void addGlobalAttribute(Model model){
+		model.addAttribute("categories", categoryService.getCategories());
+	}
 
 	@RequestMapping(value="/post/{id}", method=RequestMethod.GET)
 	public String getPost(@PathVariable String id, Model model,
@@ -35,6 +42,7 @@ public class PostController {
 				return "redirect:/";
 			}
 		}
+		addGlobalAttribute(model);
 		return "blog/post";
 	}
 	
@@ -44,6 +52,8 @@ public class PostController {
 			model.addAttribute("listContainer", postService.getPosts(1));
 		else
 			model.addAttribute("listContainer", postService.getPosts(Integer.parseInt(page)));
+		
+		addGlobalAttribute(model);
 		return "redirect:/";
 	}
 	
@@ -75,13 +85,15 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/post/write", method=RequestMethod.POST)
-	public String getWriteForm() {
+	public String getWriteForm(Model model) {
+		addGlobalAttribute(model);
 		return "blog/write";
 	}
 	
 	@RequestMapping(value="/post/update", method=RequestMethod.PUT)
 	public String getUpdateForm(int postId, Model model) {
 		model.addAttribute("post", postService.getPostNoHits(postId));
+		addGlobalAttribute(model);
 		return "blog/update";
 	}
 	

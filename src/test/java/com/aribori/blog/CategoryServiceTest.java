@@ -144,4 +144,26 @@ public class CategoryServiceTest {
 		assertEquals(before_priority1, after_priority2);
 	}
 	
+	
+	@Autowired
+	private CategoryDao categoryDao;
+	
+	@Test
+	public void resortPriority() {
+		// 이거 테스트 다하고 test.xml 바꿔야댐
+		List<Category> categoryList = categoryService.getCategories();
+		int count = 0;
+		for (Category category : categoryList) {
+			int p = category.getPriority();
+			System.out.println(p);
+			category.setPriority(count++);
+			categoryDao.updateCategory(category);
+		}
+		System.out.println("--------------");
+		categoryList = categoryService.getCategories();
+		for (Category category : categoryList) {
+			System.out.println(category);
+		}
+	}
+	
 }

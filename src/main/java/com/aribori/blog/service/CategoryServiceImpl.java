@@ -16,6 +16,11 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Category insertCategory(Category category) {
+		List<Category> categoryList = categoryDao.getCategories();
+		if(categoryList!=null & categoryList.size()!=0) {
+			int topPriority = categoryList.get(categoryList.size()-1).getPriority();
+			category.setPriority(topPriority+1);
+		}
 		return categoryDao.insertCategory(category);
 	}
 
@@ -32,6 +37,16 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void deleteCategory(int categoryId) {
 		categoryDao.deleteCategory(categoryId);
+		resortPeriority();
+	}
+	
+	public void resortPeriority() {
+		List<Category> categoryList = categoryDao.getCategories();
+		int count = 0;
+		for (Category category : categoryList) {
+			category.setPriority(count++);
+			categoryDao.updateCategory(category);
+		}
 	}
 
 	@Override
@@ -39,9 +54,9 @@ public class CategoryServiceImpl implements CategoryService {
 		Category category = categoryDao.getCategory(categoryId);
 		List<Category> categoryList = categoryDao.getCategories();
 		for (Category loopCategory : categoryList) {
-			if(category.getPriority() < loopCategory.getPriority()) {
+			if(loopCategory.getPriority()-category.getPriority() == 1) {
 				category.setPriority(category.getPriority() + 1);
-				loopCategory.setPriority(loopCategory.getPriority() -1);
+				loopCategory.setPriority(loopCategory.getPriority() - 1);
 				categoryDao.updateCategory(category);
 				categoryDao.updateCategory(loopCategory);
 				break;
@@ -54,9 +69,9 @@ public class CategoryServiceImpl implements CategoryService {
 		Category category = categoryDao.getCategory(categoryId);
 		List<Category> categoryList = categoryDao.getCategories();
 		for (Category loopCategory : categoryList) {
-			if(category.getPriority() > loopCategory.getPriority()) {
+			if(category.getPriority() - loopCategory.getPriority()== 1) {
 				category.setPriority(category.getPriority() - 1);
-				loopCategory.setPriority(loopCategory.getPriority() +1);
+				loopCategory.setPriority(loopCategory.getPriority() + 1);
 				categoryDao.updateCategory(category);
 				categoryDao.updateCategory(loopCategory);
 				break;
