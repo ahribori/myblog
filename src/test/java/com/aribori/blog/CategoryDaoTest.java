@@ -104,4 +104,14 @@ public class CategoryDaoTest {
 		int afterCount = category.getPostCount();
 		assertThat(afterCount, greaterThan(beforeCount));
 	}
+	
+	@Test
+	public void testDownPostCount() {
+		category = categoryDao.getCategory(category.getCategoryId());
+		int beforeCount = category.getPostCount();
+		categoryDao.downPostCount(category.getCategoryId());
+		category = categoryDao.getCategory(category.getCategoryId());
+		int afterCount = category.getPostCount();
+		assertThat(beforeCount, greaterThan(afterCount));
+	}
 }

@@ -62,6 +62,7 @@ public class PostController {
 		//TODO 회원/관리자 구현 후에 이 라인 수정해야함
 		post.setWriter("아리보리");
 		postService.insertPost(post);
+		categoryService.upPostCount(post.getCategoryId());
 		return "redirect:/";
 	}
 	
@@ -70,7 +71,7 @@ public class PostController {
 		if (id != null) {
 			int postId = Integer.parseInt(id);
 			post.setPostId(postId);
-			postService.updatePost(post);
+			postService.updatePost(postId, post);
 		}
 		return "redirect:/post/"+post.getPostId();
 	}
@@ -79,7 +80,11 @@ public class PostController {
 	public String deletePost(@PathVariable String id) {
 		if (id != null) {
 			int postId = Integer.parseInt(id);
+			System.out.println(id);
+			Post post = postService.getPostNoHits(postId);
+			System.out.println(post);
 			postService.deletePost(postId);
+			categoryService.downPostCount(post.getCategoryId());
 		}
 		return "redirect:/";
 	}

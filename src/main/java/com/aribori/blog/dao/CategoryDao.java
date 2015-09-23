@@ -18,7 +18,10 @@ public interface CategoryDao {
 
 	public void upPostCount(int categoryId);
 
+	public void downPostCount(int categoryId);
+
 	public void deleteAll();
+
 
 
 }

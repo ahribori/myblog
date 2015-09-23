@@ -97,6 +97,16 @@ public class CategoryServiceTest {
 	}
 	
 	@Test
+	public void testDownPostCount() {
+		category = categoryService.getCategory(category.getCategoryId());
+		int beforeCount = category.getPostCount();
+		categoryService.downPostCount(category.getCategoryId());
+		category = categoryService.getCategory(category.getCategoryId());
+		int afterCount = category.getPostCount();
+		assertThat(beforeCount, greaterThan(afterCount));
+	}
+	
+	@Test
 	public void testUpPriority() {
 		for (int i = 0; i < 1; i++) {
 			category.setName(category.getName()+"I");

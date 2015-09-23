@@ -11,11 +11,9 @@
    
     <ul class="nav hidden-xs" id="lg-menu">
     <c:forEach var="category" items="${categories}">
-        <li><a href="#featured"><i class="glyphicon glyphicon-${category.glyphicon}"></i> ${category.name}</a></li>
+        <li class="active"><a href="#featured"><i class="glyphicon glyphicon-${category.glyphicon}"></i> ${category.name} 
+        <span style="color:white;background-color:black;" class="badge">${category.postCount}</span></a></li>
     </c:forEach>
-        <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
     </ul>
     <ul class="list-unstyled hidden-xs" id="sidebar-footer">
         <li>

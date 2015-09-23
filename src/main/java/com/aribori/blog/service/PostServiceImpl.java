@@ -19,7 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.aribori.blog.dao.CategoryDao;
 import com.aribori.blog.dao.PostDao;
+import com.aribori.blog.domain.Category;
 import com.aribori.blog.domain.Post;
 import com.aribori.common.lib.ListContainer;
 import com.aribori.common.lib.Page;
@@ -29,7 +31,10 @@ public class PostServiceImpl implements PostService{
 	
 	@Autowired
 	private PostDao postDao;
-
+	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@Override
 	public Post insertPost(Post post) {
 		return postDao.insertPost(post);
@@ -63,7 +68,9 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public void updatePost(Post post) {
+	public void updatePost(int postId, Post post) {
+		categoryService.downPostCount(postDao.getPost(postId).getCategoryId());
+		categoryService.upPostCount(post.getCategoryId());
 		postDao.updatePost(post);
 	}
 

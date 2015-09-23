@@ -85,6 +85,12 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
+	public void downPostCount(int categoryId) {
+		categoryDao.downPostCount(categoryId);
+		
+	}
+
+	@Override
 	public void deleteAll() {
 		categoryDao.deleteAll();
 	}

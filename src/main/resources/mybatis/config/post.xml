@@ -14,22 +14,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="hits" column="hits"/>
 		<result property="regDate" column="reg_date"/>
 		<result property="modDate" column="mod_date"/>
+		
+		<result property="category.categoryId" column="category_id"/>
+		<result property="category.name" column="name"/>
+		<result property="category.postCount" column="post_count"/>
+		<result property="category.priority" column="priority"/>
+		<result property="category.glyphicon" column="glyphicon"/>
+		<result property="category.regDate" column="reg_date"/>
 	</resultMap>
 	
 	<insert id="insertPost">
 		<selectKey keyProperty="postId" resultType="int" order="AFTER">
 			select max(post_id) from post
 		</selectKey>
-		insert into post(title,subtitle,writer,content) 
-		values(#{title},#{subtitle},#{writer},#{content})
+		insert into post(category_id,title,subtitle,writer,content) 
+		values(#{categoryId},#{title},#{subtitle},#{writer},#{content})
 	</insert>
 	
 	<select id="post.getPost" resultMap="postRM">
-		select * from post where post_id=#{postId}
+		select p.*,c.* from post p, category c 
+		where post_id=#{postId} and p.category_Id=c.category_id
 	</select>
 	
 	<update id="updatePost">
-		update post set title=#{title},subtitle=#{subtitle},content=#{content},hits=#{hits} 
+		update post set category_id=${categoryId},title=#{title},subtitle=#{subtitle},content=#{content},hits=#{hits} 
 		where post_id=#{postId}
 	</update>
 	
@@ -46,12 +54,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getPosts" resultMap="postRM">
-		select * from post order by post_id desc limit #{limit},#{pageSize} 
+		select p.*,c.* from post p, category c 
+		where p.category_Id=c.category_id 
+		order by post_id desc limit #{limit},#{pageSize} 
 	</select>
 
 	<select id="getPostsWithoutContent" resultMap="postRM">
-		select post_id,category_id,title,subtitle,writer,hits,reg_date,mod_date 
-		from post order by post_id desc limit #{limit},#{pageSize} 
+		select p.*,c.* from post p, category c 
+		where p.category_Id=c.category_id 
+		order by post_id desc limit #{limit},#{pageSize} 
 	</select>
 	
 	<update id="upHits">

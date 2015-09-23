@@ -46,6 +46,11 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
+	public void downPostCount(int categoryId) {
+		sqlSessionTemplate.update("category.downPostCount", categoryId);
+	}
+	
+	@Override
 	public void deleteAll() {
 		sqlSessionTemplate.delete("category.deleteAll");
 	}

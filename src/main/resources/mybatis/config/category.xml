@@ -39,6 +39,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update category set post_count=post_count+1 
 		where category_id=#{categoryId}
 	</update>
+
+	<update id="downPostCount">
+		update category set post_count=post_count-1
+		where category_id=#{categoryId}
+	</update>
 	
 	<delete id="deleteCategory">
 		delete from category where category_id=#{categoryId}

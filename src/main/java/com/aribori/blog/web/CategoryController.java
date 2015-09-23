@@ -28,7 +28,6 @@ public class CategoryController {
 	
 	@RequestMapping(value="/category", method=RequestMethod.POST)
 	public String insertCategory(Category category) {
-		System.out.println(category);
 		categoryService.insertCategory(category);
 		return "redirect:/category/config";
 	}
@@ -41,7 +40,6 @@ public class CategoryController {
 	
 	@RequestMapping(value="/category/up", method=RequestMethod.PUT)
 	public String categoryUp(int categoryId, Model model) {
-		System.out.println(categoryId);
 		categoryService.upPriority(categoryId);
 		return "redirect:/category/config";
 	}

@@ -71,7 +71,7 @@ public class PostServiceTest {
 	public void testUpdatePost() {
 		int beforeHits = post.getHits();
 		post.setHits(beforeHits + 1);
-		postService.updatePost(post);
+		postService.updatePost(1,post);
 		post = postDao.getPost(post.getPostId());
 		assertThat(post.getHits(), greaterThan(beforeHits));
 		log.info("{}", post);

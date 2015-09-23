@@ -14,6 +14,8 @@ public class Post {
 	private Date regDate;
 	private Date modDate;
 	
+	private Category category;
+	
 	public Post() {
 		super();
 	}
@@ -112,12 +114,21 @@ public class Post {
 		this.modDate = modDate;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", categoryId=" + categoryId
 				+ ", title=" + title + ", subtitle=" + subtitle + ", writer="
 				+ writer + ", content=" + content + ", hits=" + hits
-				+ ", regDate=" + regDate + ", modDate=" + modDate + "]";
+				+ ", regDate=" + regDate + ", modDate=" + modDate
+				+ ", category=" + category + "]";
 	}
 
 }
