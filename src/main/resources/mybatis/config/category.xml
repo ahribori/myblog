@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getCategories" resultMap="categoryRM">
-		select * from category
+		select * from category order by priority asc
 	</select>
 	
 	<update id="updateCategory">

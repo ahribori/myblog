@@ -64,8 +64,8 @@ public class CategoryDaoTest {
 	
 	@Test
 	public void testGetCategories() {
-		for (int i = 0; i < 30; i++) {
-			category.setName(category.getName()+"i");
+		for (int i = 0; i < 10; i++) {
+			category.setName(category.getName()+"I");
 			category.setPriority(category.getPriority()+1);
 			this.insertCategory();
 		}
@@ -73,7 +73,7 @@ public class CategoryDaoTest {
 		assertNotNull(categoryList);
 		assertThat(categoryList.size(), greaterThan(0));
 		for (Category category : categoryList) {
-			log.debug("{}", category);
+			log.info("{}", category);
 		}
 		
 	}
