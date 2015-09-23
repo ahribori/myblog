@@ -32,9 +32,8 @@ CREATE TABLE `category` (
   `glyphicon` varchar(100) NOT NULL,
   `reg_date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`category_id`),
-  UNIQUE KEY `name_UNIQUE` (`name`),
-  CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `post` (`post_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,8 +53,10 @@ CREATE TABLE `post` (
   `hits` int(11) NOT NULL DEFAULT '0',
   `reg_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `mod_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`post_id`),
+  KEY `fk_category_id_idx` (`category_id`),
+  CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -67,7 +68,7 @@ CREATE TABLE `post` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-23 22:34:08
+-- Dump completed on 2015-09-23 23:36:12
 CREATE DATABASE  IF NOT EXISTS `myblogtest` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `myblogtest`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
@@ -137,4 +138,4 @@ CREATE TABLE `post` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-23 22:34:08
+-- Dump completed on 2015-09-23 23:36:12
