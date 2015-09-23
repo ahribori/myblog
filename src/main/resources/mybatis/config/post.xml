@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{categoryId},#{title},#{subtitle},#{writer},#{content})
 	</insert>
 	
-	<select id="post.getPost" resultMap="postRM">
+	<select id="getPost" resultMap="postRM">
 		select p.*,c.* from post p, category c 
 		where post_id=#{postId} and p.category_Id=c.category_id
 	</select>
@@ -53,10 +53,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from post
 	</select>
 	
+	<select id="getTotalCountByCategory" resultType="int">
+		select count(*) from post where category_id=#{categoryId}
+	</select>
+	
 	<select id="getPosts" resultMap="postRM">
 		select p.*,c.* from post p, category c 
 		where p.category_Id=c.category_id 
 		order by post_id desc limit #{limit},#{pageSize} 
+	</select>
+	
+	<select id="getPostsByCategory" resultMap="postRM">
+		select p.*,c.* from post p, category c 
+		where p.category_id=${categoryId} and p.category_id=c.category_id 
+		order by post_id desc limit #{page.limit},#{page.pageSize} 
 	</select>
 
 	<select id="getPostsWithoutContent" resultMap="postRM">

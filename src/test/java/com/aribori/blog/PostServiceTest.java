@@ -23,7 +23,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.aribori.blog.dao.CategoryDao;
 import com.aribori.blog.dao.PostDao;
+import com.aribori.blog.domain.Category;
 import com.aribori.blog.domain.Post;
 import com.aribori.blog.service.PostService;
 import com.aribori.common.lib.ListContainer;
@@ -38,23 +40,37 @@ public class PostServiceTest {
 	@Autowired
 	private PostDao postDao;
 	
+	@Autowired
+	private CategoryDao categoryDao;
+	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	Post post = new Post("제목", "부제목", "글쓴이", "컨텐츠");
-
+	Category category = new Category("테스트 카테고리", 0, "cloud");
+	
 	@Before
 	public void setUp() {
 		assertNotNull(postService);
 		log.debug("setUp");
-		
+
+		// Insert Category
+		this.insertCategory();
 		// Insert Post
+		post.setCategoryId(1);
 		this.insertPost();
 	}
 	
 	@After
 	public void deleteAll() {
 		postDao.deleteAll();
+		categoryDao.deleteAll();
 		log.debug("truncate table");
+	}
+	
+	public void insertCategory() {
+		category = categoryDao.insertCategory(category);
+		assertThat(category.getCategoryId(), greaterThan(0));
+		log.debug("insertPost");
 	}
 	
 	public void insertPost() {

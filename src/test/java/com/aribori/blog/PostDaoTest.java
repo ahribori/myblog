@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.aribori.blog.dao.CategoryDao;
 import com.aribori.blog.dao.PostDao;
+import com.aribori.blog.domain.Category;
 import com.aribori.blog.domain.Post;
 import com.aribori.common.lib.Page;
 
@@ -26,9 +28,13 @@ public class PostDaoTest {
 	@Autowired
 	private PostDao postDao;
 	
+	@Autowired
+	private CategoryDao categoryDao;
+	
 	private Logger log = LoggerFactory.getLogger(getClass());
 
 	Post post = new Post("제목", "부제목", "글쓴이", "컨텐츠");
+	Category category = new Category("테스트 카테고리", 0, "cloud");
 	
 	/**
 	 * 각 단위테스트 실행 전 postDao 오브젝트가 살아있는지 체크하고,
@@ -39,8 +45,18 @@ public class PostDaoTest {
 		assertNotNull(postDao);
 		log.debug("setUp");
 		
+		// Insert Category
+		this.insertCategory();
+		
 		// Insert Post
+		post.setCategoryId(1);
 		this.insertPost();
+	}
+	
+	public void insertCategory() {
+		category = categoryDao.insertCategory(category);
+		assertThat(category.getCategoryId(), greaterThan(0));
+		log.debug("insertPost");
 	}
 	
 	public void insertPost() {
@@ -52,6 +68,7 @@ public class PostDaoTest {
 	@After
 	public void deleteAll() {
 		postDao.deleteAll();
+		categoryDao.deleteAll();
 		log.debug("truncate table");
 	}
 
@@ -90,6 +107,7 @@ public class PostDaoTest {
 		int beforeHits = post.getHits();
 		post.setHits(beforeHits + 1);
 		postDao.updatePost(post);
+		System.out.println(post);
 		post = postDao.getPost(post.getPostId());
 		assertThat(post.getHits(), greaterThan(beforeHits));
 		log.info("{}", post);

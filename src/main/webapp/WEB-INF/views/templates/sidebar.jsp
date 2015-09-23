@@ -11,7 +11,7 @@
    
     <ul class="nav hidden-xs" id="lg-menu">
     <c:forEach var="category" items="${categories}">
-        <li class="active"><a href="#featured"><i class="glyphicon glyphicon-${category.glyphicon}"></i> ${category.name} 
+        <li class="active"><a href="${initParam.root}category/${category.categoryId}/page/1"><i class="glyphicon glyphicon-${category.glyphicon}"></i> ${category.name} 
         <span style="color:white;background-color:black;" class="badge">${category.postCount}</span></a></li>
     </c:forEach>
     </ul>
@@ -24,7 +24,7 @@
   	<!-- tiny only nav-->
   	<ul class="nav visible-xs" id="xs-menu">
   	<c:forEach var="category" items="${categories}">
-      	<li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-${category.glyphicon}"></i></a></li>
+      	<li><a href="${initParam.root}category/${category.categoryId}/page/1" class="text-center"><i class="glyphicon glyphicon-${category.glyphicon}"></i></a></li>
   	</c:forEach>
         <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
       	<li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>

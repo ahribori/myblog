@@ -145,6 +145,8 @@ public class Page {
 		this.isLastPageGroup = (currentPageGroup == pageGroupCount) ? true : false;
 		
 		this.limit = this.beginRow - 1;
+		
+		if(limit<0) limit = 0;
 	
 	}
 	

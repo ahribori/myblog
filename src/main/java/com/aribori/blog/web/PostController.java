@@ -30,11 +30,11 @@ public class PostController {
 		model.addAttribute("categories", categoryService.getCategories());
 	}
 
-	@RequestMapping(value="/post/{id}", method=RequestMethod.GET)
-	public String getPost(@PathVariable String id, Model model,
+	@RequestMapping(value="/category/{category_id}/post/{id}", method=RequestMethod.GET)
+	public String getPost(@PathVariable String category_id, @PathVariable String id, Model model,
 			@CookieValue(value = "getPostLog", required = false) Cookie cookie, 
 			HttpServletResponse response) {
-		if (id != null) {
+		if (category_id != null && id != null) {
 			try {
 				int postId = Integer.parseInt(id);
 				model.addAttribute("post", postService.getPost(postId, cookie, response));
@@ -44,6 +44,21 @@ public class PostController {
 		}
 		addGlobalAttribute(model);
 		return "blog/post";
+	}
+	
+	@RequestMapping(value="category/{category_id}/page/{page}", method=RequestMethod.GET)
+	public String getPostsByCategory(@PathVariable String category_id, @PathVariable String page, Model model) {
+		if(category_id!=null) {
+			int currentPage = 1;
+			int categoryId = Integer.parseInt(category_id);
+			if(page!=null) {
+				currentPage = Integer.parseInt(page);
+			}
+			model.addAttribute("listContainer", postService.getPostsByCategory(currentPage, 5, 5, categoryId));
+			model.addAttribute("category", categoryService.getCategory(categoryId));
+		}
+		addGlobalAttribute(model);
+		return "blog/list";
 	}
 	
 	@RequestMapping(value="/posts/{page}" )

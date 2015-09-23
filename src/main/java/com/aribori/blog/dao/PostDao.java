@@ -18,8 +18,12 @@ public interface PostDao {
 	public void deleteAll();
 
 	public int getTotalCount();
+	
+	public int getTotalCountByCategory(int categoryId);
 
 	public List<Post> getPosts(Page page);
+
+	public List<Post> getPostsByCategory(int categoryId, Page page);
 
 	public void upHits(int postId);
 

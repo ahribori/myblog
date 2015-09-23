@@ -1,6 +1,8 @@
 package com.aribori.blog.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +49,21 @@ public class PostDaoImpl implements PostDao{
 	}
 
 	@Override
+	public int getTotalCountByCategory(int categoryId) {
+		return sqlSessionTemplate.selectOne("post.getTotalCountByCategory", categoryId);
+	}
+
+	@Override
 	public List<Post> getPosts(Page page) {
 		return sqlSessionTemplate.selectList("post.getPosts", page);
+	}
+
+	@Override
+	public List<Post> getPostsByCategory(int categoryId, Page page) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("categoryId", categoryId);
+		map.put("page", page);
+		return sqlSessionTemplate.selectList("post.getPostsByCategory", map);
 	}
 
 	@Override

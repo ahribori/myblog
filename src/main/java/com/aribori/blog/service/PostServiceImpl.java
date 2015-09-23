@@ -99,6 +99,28 @@ public class PostServiceImpl implements PostService{
 		return new ListContainer(postList, page);
 	}
 	
+	@Override
+	public ListContainer getPostsByCategory(int currentPage, int categoryId) {
+		Page page = new Page(currentPage, postDao.getTotalCountByCategory(categoryId));
+		System.out.println(postDao.getTotalCountByCategory(categoryId));
+		List<Post> postList = postDao.getPostsByCategory(categoryId, page);
+		for (Post post : postList) {
+			post.setContent(makeContentThumbnail(post.getContent()));
+		}
+		return new ListContainer(postList, page);
+	}
+
+	@Override
+	public ListContainer getPostsByCategory(int currentPage, int pageSize,
+			int pageGroupSize, int categoryId) {
+		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCountByCategory(categoryId));
+		List<Post> postList = postDao.getPostsByCategory(categoryId, page);
+		for (Post post : postList) {
+			post.setContent(makeContentThumbnail(post.getContent()));
+		}
+		return new ListContainer(postList, page);
+	}
+
 	public String makeContentThumbnail(String content) {
 		String text = null;
 		Document doc = Jsoup.parseBodyFragment(content);
@@ -108,7 +130,7 @@ public class PostServiceImpl implements PostService{
 		} else if (text!=null && text.trim().length()==0) {
 			text += "본문에 TEXT가 없습니다.";
 		}
-		text += "... <span class='label label-default'>내용 전체 보기</span>";
+		text += "... <span class='label label-primary'>내용 전체 보기</span>";
 		return text;
 	}
 
