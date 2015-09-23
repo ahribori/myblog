@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <div class="panel panel-default">
   <div class="panel-heading"><h4>#${post.postId}. ${post.title}</h4>
-	<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
+	<a href="${initParam.root}category/${post.categoryId}/page/1"><span class="label label-success">${post.category.name}</span></a> 
 	<span class="label label-info">#태그1</span> 
 	<span class="label label-info">#태그2</span> 
 	<span class="label label-info">#태그3</span> 
