@@ -9,7 +9,7 @@
 	</ul>
    
     <ul class="nav hidden-xs" id="lg-menu">
-        <li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
+        <li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> 사는얘기</a></li>
         <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
         <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
         <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>
@@ -21,7 +21,7 @@
     </ul>
   
   	<!-- tiny only nav-->
-  <ul class="nav visible-xs" id="xs-menu">
+  	<ul class="nav visible-xs" id="xs-menu">
       	<li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
         <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
       	<li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
