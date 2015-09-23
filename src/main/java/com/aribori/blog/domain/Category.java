@@ -14,7 +14,14 @@ public class Category {
 	public Category() {
 		super();
 	}
-
+	
+	public Category(String name, int priority, String glyphicon) {
+		super();
+		this.name = name;
+		this.priority = priority;
+		this.glyphicon = glyphicon;
+	}
+	
 	public int getCategoryId() {
 		return categoryId;
 	}

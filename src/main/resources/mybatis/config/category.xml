@@ -14,6 +14,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="regDate" column="reg_date"/>
 	</resultMap>
 	
+	<insert id="insertCategory">
+		<selectKey keyProperty="categoryId" resultType="int" order="AFTER">
+			select max(category_id) from category
+		</selectKey>
+		insert into category(name,priority,glyphicon) 
+		values(#{name},#{priority},#{glyphicon})
+	</insert>
+	
+	<select id="getCategory" resultMap="categoryRM">
+		select * from category where category_id=#{categoryId}
+	</select>
+	
+	<select id="getCategories" resultMap="categoryRM">
+		select * from category
+	</select>
+	
+	<update id="updateCategory">
+		update category set name=#{name},priority=#{priority},glyphicon=#{glyphicon} 
+		where category_id=#{categoryId}
+	</update>
+	
+	<update id="upPostCount">
+		update category set post_count=post_count+1 
+		where category_id=#{categoryId}
+	</update>
+	
+	<delete id="deleteCategory">
+		delete from category where category_id=#{categoryId}
+	</delete>
+	
+	<delete id="deleteAll">
+		truncate category
+	</delete>
 	
 </mapper>
  
