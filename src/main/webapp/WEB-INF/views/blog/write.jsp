@@ -6,6 +6,17 @@
 
 <script src="${initParam.root}resources/ckeditor/ckeditor.js"></script>
 
+<script src="${initParam.root}resources/tagsinput/bootstrap-tagsinput.min.js"></script>
+<link href="${initParam.root}resources/tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+<script type="text/javascript">
+	$(function(){
+		$('#tagString').tagsinput({
+		  confirmKeys: [13, 32, 44]
+		});
+		
+	});
+</script>
+
 <form:form action="${initParam.root}post" method="post" commandName="post">
 	
 	<label>카테고리</label>
@@ -21,8 +32,8 @@
 	<form:input type="text" name="title" path="title" class="form-control" placeholder="제목을 입력하세요"/>
 	<font color="red"><form:errors path="title"></form:errors></font><br>
 	
-	<label>#태그</label>
-	<input type="text" name="tags" class="form-control" placeholder="#태그를 등록하세요(미구현)"><br>
+	<label>#태그</label><br>
+	<input type="text" name="tagString" id="tagString" class="form-control" placeholder="Enter, 콤마(,)로 구분하여 여러개의 태그를 등록하세요)" style="display: none;"><br>
 	
     <form:textarea name="content" path="content" id="editor1" rows="10" cols="80"/>
     <font color="red"><form:errors path="content"></form:errors></font><br>

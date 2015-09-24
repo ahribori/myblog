@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sql Mapper -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post_tag">
+
+	<resultMap type="post_tag" id="post_tagRM">
+	
+		<result property="post.postId" column="post_id"/>
+		<result property="post.categoryId" column="category_id"/>
+		<result property="post.title" column="title"/>
+		<result property="post.writer" column="writer"/>
+		<result property="post.content" column="content"/>
+		<result property="post.hits" column="hits"/>
+		<result property="post.regDate" column="reg_date"/>
+		<result property="post.modDate" column="mod_date"/>
+		
+		<result property="post.category.categoryId" column="category_id"/>
+		<result property="post.category.name" column="name"/>
+		<result property="post.category.postCount" column="post_count"/>
+		<result property="post.category.priority" column="priority"/>
+		<result property="post.category.glyphicon" column="glyphicon"/>
+		<result property="post.category.regDate" column="reg_date"/>
+		
+		<result property="tag.tagId" column="tag_id"/>
+		<result property="tag.name" column="name"/>
+		<result property="tag.useCount" column="use_count"/>
+		<result property="tag.regDate" column="reg_date"/>
+		<result property="tag.modDate" column="mod_date"/>
+		
+	</resultMap>
+	
+	<insert id="insertPostTag">
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			select max(id) from post_tag
+		</selectKey>
+		insert into post_tag(post_id,tag_id) 
+		values(#{postId},#{tagId})
+	</insert>
+	
+	<delete id="deletePostTag">
+		delete from post_tag 
+		where post_id=#{postId} and tag_id=#{tagId}
+	</delete>
+	
+</mapper>
+ 
+ 

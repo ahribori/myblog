@@ -1,8 +1,7 @@
 package com.aribori.blog.domain;
 
 import java.util.Date;
-
-import javax.validation.constraints.Size;
+import java.util.List;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.NumberFormat;
@@ -25,6 +24,9 @@ public class Post {
 	
 	private Category category;
 	
+	private List<Tag> tags;
+	
+
 	public Post() {
 		super();
 	}
@@ -115,13 +117,23 @@ public class Post {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
 
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", categoryId=" + categoryId
-				+ ", title=" + title + ", subtitle=" +  writer + ", content=" + content 
-				+ ", hits=" + hits + ", regDate=" + regDate + ", modDate=" + modDate
-				+ ", category=" + category + "]";
+				+ ", title=" + title + ", tagString=" + tagString + ", writer="
+				+ writer + ", content=" + content + ", hits=" + hits
+				+ ", regDate=" + regDate + ", modDate=" + modDate
+				+ ", category=" + category + ", tags=" + tags + "]";
 	}
-
+	
+	
 }

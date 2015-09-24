@@ -89,6 +89,7 @@ public class PostController {
 	@RequestMapping(value="/post", method=RequestMethod.POST)
 	public String insertPost(@Valid Post post, BindingResult result, Model model) {
 		addGlobalAttribute(model);
+		System.out.println(post.getTagString());
 		if(result.hasErrors()) {
 			return "blog/write";
 		}

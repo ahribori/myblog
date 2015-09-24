@@ -19,10 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.aribori.blog.dao.CategoryDao;
 import com.aribori.blog.dao.PostDao;
-import com.aribori.blog.domain.Category;
+import com.aribori.blog.dao.PostTagDao;
+import com.aribori.blog.dao.TagDao;
 import com.aribori.blog.domain.Post;
+import com.aribori.blog.domain.PostTag;
+import com.aribori.blog.domain.Tag;
 import com.aribori.common.lib.ListContainer;
 import com.aribori.common.lib.Page;
 
@@ -35,9 +37,16 @@ public class PostServiceImpl implements PostService{
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private TagService tagService;
+	
 	@Override
 	public Post insertPost(Post post) {
-		return postDao.insertPost(post);
+		post = postDao.insertPost(post);
+		
+		if(post.getTagString()!=null)
+			tagService.tagProcess(post);
+		return post;
 	}
 
 	@Override
@@ -59,12 +68,16 @@ public class PostServiceImpl implements PostService{
 			cookie.setMaxAge(60*60*24);
 			response.addCookie(cookie);
 		}
-		return postDao.getPost(postId);
+		Post post = postDao.getPost(postId);
+		post.setTags(tagService.getTagsByPostId(post.getPostId()));
+		return post;
 	}
 
 	@Override
 	public Post getPostNoHits(int postId) {
-		return postDao.getPost(postId);
+		Post post = postDao.getPost(postId);
+		post.setTags(tagService.getTagsByPostId(post.getPostId()));
+		return post;
 	}
 
 	@Override
@@ -85,6 +98,7 @@ public class PostServiceImpl implements PostService{
 		List<Post> postList = postDao.getPosts(page);
 		for (Post post : postList) {
 			post.setContent(makeContentThumbnail(post.getContent()));
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -95,6 +109,7 @@ public class PostServiceImpl implements PostService{
 		List<Post> postList = postDao.getPosts(page);
 		for (Post post : postList) {
 			post.setContent(makeContentThumbnail(post.getContent()));
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -106,6 +121,7 @@ public class PostServiceImpl implements PostService{
 		List<Post> postList = postDao.getPostsByCategory(categoryId, page);
 		for (Post post : postList) {
 			post.setContent(makeContentThumbnail(post.getContent()));
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -117,6 +133,7 @@ public class PostServiceImpl implements PostService{
 		List<Post> postList = postDao.getPostsByCategory(categoryId, page);
 		for (Post post : postList) {
 			post.setContent(makeContentThumbnail(post.getContent()));
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}

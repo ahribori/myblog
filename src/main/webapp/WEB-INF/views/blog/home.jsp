@@ -93,9 +93,9 @@
        	<div class="panel-heading"><a href="#" class="pull-right">View all</a> 
        	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
 			<a href="${initParam.root}category/${post.categoryId}/page/1"><span class="label label-success">${post.category.name}</span></a> 
-			<span class="label label-info">#태그1</span> 
-			<span class="label label-info">#태그2</span> 
-			<span class="label label-info">#태그3</span> 
+			<c:forEach var="tag" items="${post.tags}">
+			<span class="label label-info">#${tag.name}</span> 
+			</c:forEach>
 	    </div>
         <div class="panel-body">
           <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="${initParam.root}post/${post.postId}">${post.content}</a></p>

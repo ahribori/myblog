@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <div class="panel panel-default">
   <div class="panel-heading"><h4>#${post.postId}. ${post.title}</h4>
 	<a href="${initParam.root}category/${post.categoryId}/page/1"><span class="label label-success">${post.category.name}</span></a> 
-	<span class="label label-info">#태그1</span> 
-	<span class="label label-info">#태그2</span> 
-	<span class="label label-info">#태그3</span> 
+	<c:forEach var="tag" items="${post.tags}">
+	<span class="label label-info">#${tag.name}</span> 
+	</c:forEach>
   </div>
  	<div class="panel-body">
  	<i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
