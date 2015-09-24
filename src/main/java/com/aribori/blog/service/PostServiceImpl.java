@@ -17,6 +17,7 @@ import org.jsoup.examples.HtmlToPlainText;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aribori.blog.dao.PostDao;
@@ -40,6 +41,7 @@ public class PostServiceImpl implements PostService{
 	@Autowired
 	private TagService tagService;
 	
+	@Transactional
 	@Override
 	public Post insertPost(Post post) {
 		post = postDao.insertPost(post);
@@ -48,7 +50,7 @@ public class PostServiceImpl implements PostService{
 			tagService.tagProcess(post);
 		return post;
 	}
-
+	
 	@Override
 	public Post getPost(int postId, Cookie cookie, HttpServletResponse response) {
 		String getPostLog = null;
@@ -80,8 +82,11 @@ public class PostServiceImpl implements PostService{
 		return post;
 	}
 
+	@Transactional
 	@Override
 	public void updatePost(int postId, Post post) {
+		if(post.getTagString()!=null)
+			tagService.tagProcess(post);
 		categoryService.downPostCount(postDao.getPost(postId).getCategoryId());
 		categoryService.upPostCount(post.getCategoryId());
 		postDao.updatePost(post);

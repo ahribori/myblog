@@ -13,7 +13,6 @@
 		$('#tagString').tagsinput({
 		  confirmKeys: [13, 32, 44]
 		});
-		
 	});
 </script>
 <form:form action="${initParam.root}post" method="post" commandName="post">

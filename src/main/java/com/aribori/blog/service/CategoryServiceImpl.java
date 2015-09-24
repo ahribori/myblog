@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.aribori.blog.dao.CategoryDao;
 import com.aribori.blog.domain.Category;
@@ -48,7 +49,8 @@ public class CategoryServiceImpl implements CategoryService {
 			categoryDao.updateCategory(category);
 		}
 	}
-
+	
+	@Transactional
 	@Override
 	public void upPriority(int categoryId) {
 		Category category = categoryDao.getCategory(categoryId);
@@ -64,6 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public void downPriority(int categoryId) {
 		Category category = categoryDao.getCategory(categoryId);

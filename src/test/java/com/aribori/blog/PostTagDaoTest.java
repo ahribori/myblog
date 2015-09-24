@@ -36,4 +36,11 @@ public class PostTagDaoTest {
 		System.out.println(postTag);
 	}
 	
+	@Test
+	public void testFindTagsByPostId() {
+		List<Tag> list = postTagDao.findTagsByPostId(14);
+		for (Tag tag : list) {
+			System.out.println(tag);
+		}
+	}
 }

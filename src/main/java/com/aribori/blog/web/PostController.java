@@ -103,7 +103,6 @@ public class PostController {
 	@RequestMapping(value="/post/{id}", method=RequestMethod.PUT)
 	public String updatePost(@PathVariable String id, @Valid Post post, 
 			BindingResult result, Model model) {
-		
 		addGlobalAttribute(model);
 		if(result.hasErrors()) {
 			return "blog/update";

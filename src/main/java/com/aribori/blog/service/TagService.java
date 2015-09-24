@@ -11,4 +11,5 @@ public interface TagService {
 	
 	public List<Tag> getTagsByPostId(int postId);
 
+
 }
