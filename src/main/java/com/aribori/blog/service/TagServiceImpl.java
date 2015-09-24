@@ -66,6 +66,12 @@ public class TagServiceImpl implements TagService {
 	public List<Tag> getTagsByPostId(int postId) {
 		return tagDao.getTagsByPostId(postId);
 	}
+
+
+	@Override
+	public Tag getTag(int tagId) {
+		return tagDao.getTag(tagId);
+	}
 	
 	
 }

@@ -4,20 +4,33 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <!DOCTYPE html>
 <div class="col-sm-12">
+<c:if test="${category!=null}">
 <form action="${initParam.root}post/write" method="post">
 	<input type="hidden" name="categoryId" value="${category.categoryId}">
 	<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-pencil"></i> 여기에 글 쓰기</button>
 </form>
+</c:if>
 <h2><span class="label label-success">${category.name}</span></h2>
+<c:if test="${tag!=null}">
+<h2><span class="label label-info">#${tag.name}</span></h2>
+</c:if>
 <hr style="border:0px">
 <!-- Post -->
 
-<c:if test="${empty listContainer.list}">
-<div style="margin-top: 30px; margin-bottom: 30px;">
+<c:choose>
+	<c:when test="${empty listContainer.list && category!=null}">
+	<div style="margin-top: 30px; margin-bottom: 30px;">
 	<h2>카테고리가 비어있습니다.</h2>
-</div>
-<hr>
-</c:if>
+	</div>
+	<hr>
+	</c:when>
+	<c:when test="${empty listContainer.list}">
+	<div style="margin-top: 30px; margin-bottom: 30px;">
+	<h2>이 태그를 단 게시물이 존재하지 않습니다.</h2>
+	</div>
+	<hr>
+	</c:when>
+</c:choose>
 
 
 <c:forEach var="post" items="${listContainer.list}">
@@ -26,7 +39,7 @@
       	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
 		<a href="${initParam.root}category/${post.categoryId}/page/1"><span class="label label-success">${post.category.name}</span></a> 
 		<c:forEach var="tag" items="${post.tags}">
-		<span class="label label-info">#${tag.name}</span> 
+		<a href="${initParam.root}tag/${tag.tagId}"><span class="label label-info">#${tag.name}</span></a>
 		</c:forEach>
     </div>
        <div class="panel-body">

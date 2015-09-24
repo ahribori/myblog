@@ -21,10 +21,16 @@ public interface PostDao {
 	
 	public int getTotalCountByCategory(int categoryId);
 
+	public int getTotalCountByTag(int tagId);
+
 	public List<Post> getPosts(Page page);
 
 	public List<Post> getPostsByCategory(int categoryId, Page page);
 
+	public List<Post> getPostsByTag(int tagId, Page page);
+
 	public void upHits(int postId);
+
+
 
 }

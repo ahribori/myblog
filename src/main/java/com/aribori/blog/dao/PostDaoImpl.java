@@ -54,6 +54,11 @@ public class PostDaoImpl implements PostDao{
 	}
 
 	@Override
+	public int getTotalCountByTag(int tagId) {
+		return sqlSessionTemplate.selectOne("post.getTotalCountByTag", tagId);
+	}
+
+	@Override
 	public List<Post> getPosts(Page page) {
 		return sqlSessionTemplate.selectList("post.getPosts", page);
 	}
@@ -64,6 +69,14 @@ public class PostDaoImpl implements PostDao{
 		map.put("categoryId", categoryId);
 		map.put("page", page);
 		return sqlSessionTemplate.selectList("post.getPostsByCategory", map);
+	}
+
+	@Override
+	public List<Post> getPostsByTag(int tagId, Page page) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tagId", tagId);
+		map.put("page", page);
+		return sqlSessionTemplate.selectList("post.getPostsByTag", map);
 	}
 
 	@Override

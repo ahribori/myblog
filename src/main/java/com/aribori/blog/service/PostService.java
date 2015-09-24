@@ -30,8 +30,13 @@ public interface PostService {
 	public ListContainer getPostsByCategory
 	(int currentPage, int pageSize, int pageGroupSize, int categoryId);
 
+	public ListContainer getPostsByTag(int currentPage, int tagId);
+
+	public ListContainer getPostsByTag(int currentPage, int pageSize, int pageGroupSize, int tagId);
+
 	public void imageUpload(HttpServletRequest request,
 			HttpServletResponse response, MultipartFile upload);
+
 
 
 	

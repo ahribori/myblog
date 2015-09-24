@@ -94,7 +94,7 @@
        	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
 			<a href="${initParam.root}category/${post.categoryId}/page/1"><span class="label label-success">${post.category.name}</span></a> 
 			<c:forEach var="tag" items="${post.tags}">
-			<span class="label label-info">#${tag.name}</span> 
+			<a href="${initParam.root}tag/${tag.tagId}"><span class="label label-info">#${tag.name}</span></a> 
 			</c:forEach>
 	    </div>
         <div class="panel-body">

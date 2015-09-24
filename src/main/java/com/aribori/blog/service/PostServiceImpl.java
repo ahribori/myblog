@@ -143,6 +143,29 @@ public class PostServiceImpl implements PostService{
 		return new ListContainer(postList, page);
 	}
 
+	@Override
+	public ListContainer getPostsByTag(int currentPage, int tagId) {
+		Page page = new Page(currentPage, postDao.getTotalCountByTag(tagId));
+		List<Post> postList = postDao.getPostsByTag(tagId, page);
+		for (Post post : postList) {
+			post.setContent(makeContentThumbnail(post.getContent()));
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+		}
+		return new ListContainer(postList, page);
+	}
+
+	@Override
+	public ListContainer getPostsByTag(int currentPage, int pageSize,
+			int pageGroupSize, int tagId) {
+		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCountByTag(tagId));
+		List<Post> postList = postDao.getPostsByTag(tagId, page);
+		for (Post post : postList) {
+			post.setContent(makeContentThumbnail(post.getContent()));
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+		}
+		return new ListContainer(postList, page);
+	}
+
 	public String makeContentThumbnail(String content) {
 		String text = null;
 		Document doc = Jsoup.parseBodyFragment(content);

@@ -45,12 +45,9 @@ public class PostDaoTest {
 		assertNotNull(postDao);
 		log.debug("setUp");
 		
-		// Insert Category
-		this.insertCategory();
-		
-		// Insert Post
-		post.setCategoryId(1);
-		this.insertPost();
+		//this.insertCategory();
+		//post.setCategoryId(1);
+		//this.insertPost();
 	}
 	
 	public void insertCategory() {
@@ -67,9 +64,9 @@ public class PostDaoTest {
 	
 	@After
 	public void deleteAll() {
-		postDao.deleteAll();
-		categoryDao.deleteAll();
-		log.debug("truncate table");
+		//postDao.deleteAll();
+		//categoryDao.deleteAll();
+		//log.debug("truncate table");
 	}
 
 	@Test
@@ -88,6 +85,13 @@ public class PostDaoTest {
 	}
 	
 	@Test
+	public void testGetTotalCountByTag() {
+		int totalCount = postDao.getTotalCountByTag(1);
+		assertThat(totalCount, greaterThan(0));
+		log.info("totalCount = {}", totalCount);
+	}
+	
+	@Test
 	public void testGetPosts() {
 		for (int i = 0; i < 30; i++) {
 			this.insertPost();
@@ -96,6 +100,16 @@ public class PostDaoTest {
 		List<Post> postList = postDao.getPosts(page);
 		assertNotNull(postList);
 		assertThat(postList.size(), greaterThan(0));
+		for (Post post : postList) {
+			log.debug("{}", post);
+		}
+		
+	}
+	
+	@Test
+	public void testGetPostsByTag() {
+		Page page = new Page(postDao.getTotalCountByTag(1));
+		List<Post> postList = postDao.getPostsByTag(1, page);
 		for (Post post : postList) {
 			log.debug("{}", post);
 		}

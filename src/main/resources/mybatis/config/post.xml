@@ -46,7 +46,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<delete id="deleteAll">
+		SET FOREIGN_KEY_CHECKS = 0;
 		truncate post
+		SET FOREIGN_KEY_CHECKS = 1;
 	</delete>
 	
 	<select id="getTotalCount" resultType="int">
@@ -55,6 +57,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTotalCountByCategory" resultType="int">
 		select count(*) from post where category_id=#{categoryId}
+	</select>
+	
+	<select id="getTotalCountByTag" resultType="int">
+		select count(*) from post p, post_tag pt 
+		where p.post_id=pt.post_id and pt.tag_id=#{tagId}
 	</select>
 	
 	<select id="getPosts" resultMap="postRM">
@@ -67,6 +74,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select p.*,c.* from post p, category c 
 		where p.category_id=${categoryId} and p.category_id=c.category_id 
 		order by post_id desc limit #{page.limit},#{page.pageSize} 
+	</select>
+	
+	<select id="getPostsByTag" resultMap="postRM">
+		select p.*,c.* from post p, category c, post_tag pt 
+		where p.category_id=c.category_id 
+		and p.post_id=pt.post_id and pt.tag_id=#{tagId}
+		order by post_id desc limit #{page.limit},#{page.pageSize}
 	</select>
 
 	<select id="getPostsWithoutContent" resultMap="postRM">

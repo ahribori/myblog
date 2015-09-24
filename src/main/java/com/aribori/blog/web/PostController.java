@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.aribori.blog.domain.Post;
 import com.aribori.blog.service.CategoryService;
 import com.aribori.blog.service.PostService;
+import com.aribori.blog.service.TagService;
 
 @Controller
 public class PostController {
@@ -27,6 +28,9 @@ public class PostController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private TagService tagService;
 	
 	public void addGlobalAttribute(Model model){
 		model.addAttribute("categories", categoryService.getCategories());
@@ -51,9 +55,8 @@ public class PostController {
 	@RequestMapping(value="category/{category_id}", method=RequestMethod.GET)
 	public String getPostsByCategory(@PathVariable String category_id, Model model) {
 		if(category_id!=null) {
-			int currentPage = 1;
 			int categoryId = Integer.parseInt(category_id);
-			model.addAttribute("listContainer", postService.getPostsByCategory(currentPage, 5, 5, categoryId));
+			model.addAttribute("listContainer", postService.getPostsByCategory(1, 5, 5, categoryId));
 			model.addAttribute("category", categoryService.getCategory(categoryId));
 		}
 		addGlobalAttribute(model);
@@ -70,6 +73,32 @@ public class PostController {
 			}
 			model.addAttribute("listContainer", postService.getPostsByCategory(currentPage, 5, 5, categoryId));
 			model.addAttribute("category", categoryService.getCategory(categoryId));
+		}
+		addGlobalAttribute(model);
+		return "blog/list";
+	}
+	
+	@RequestMapping(value="tag/{tag_id}", method=RequestMethod.GET)
+	public String getPostsByTag(@PathVariable String tag_id, Model model) {
+		if(tag_id!=null) {
+			int tagId = Integer.parseInt(tag_id);
+			model.addAttribute("listContainer", postService.getPostsByTag(1, 5, 5, tagId));
+			model.addAttribute("tag", tagService.getTag(tagId));
+		}
+		addGlobalAttribute(model);
+		return "blog/list";
+	}
+	
+	@RequestMapping(value="tag/{tag_id}/page/{page}", method=RequestMethod.GET)
+	public String getPostsByTag(@PathVariable String tag_id, @PathVariable String page, Model model) {
+		if(tag_id!=null) {
+			int currentPage = 1;
+			int tagId = Integer.parseInt(tag_id);
+			if(page!=null) {
+				currentPage = Integer.parseInt(page);
+			}
+			model.addAttribute("listContainer", postService.getPostsByTag(currentPage, 5, 5, tagId));
+			model.addAttribute("tag", tagService.getTag(tagId));
 		}
 		addGlobalAttribute(model);
 		return "blog/list";

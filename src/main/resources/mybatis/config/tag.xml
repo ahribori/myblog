@@ -48,7 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<delete id="deleteAll">
+		SET FOREIGN_KEY_CHECKS = 0;
 		truncate tag
+		SET FOREIGN_KEY_CHECKS = 1;
 	</delete>
 	
 	<select id="getTagsByPostId" resultMap="tagRM">
