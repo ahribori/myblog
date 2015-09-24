@@ -26,6 +26,11 @@ public class TagDaoImpl implements TagDao{
 	}
 
 	@Override
+	public Tag getTagByName(String name) {
+		return sqlSessionTemplate.selectOne("tag.getTagByName", name);
+	}
+
+	@Override
 	public List<Tag> getTags() {
 		return sqlSessionTemplate.selectList("tag.getTags");
 	}

@@ -28,6 +28,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTag" resultMap="tagRM">
 		select * from tag where tag_id=#{tagId}
 	</select>
+
+	<select id="getTagByName" resultMap="tagRM">
+		select * from tag where name=#{name}
+	</select>
 	
 	<select id="getTags" resultMap="tagRM">
 		select * from tag

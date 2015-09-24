@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.aribori.blog.service.CategoryService;
 import com.aribori.blog.service.PostService;
+import com.aribori.blog.service.TagService;
 import com.aribori.common.lib.ListContainer;
 
 @Controller
@@ -18,11 +19,15 @@ public class HomeController {
 	@Autowired
 	CategoryService categoryService;
 	
+	@Autowired
+	TagService tagService;
+	
 	@RequestMapping(value="/")
 	public String home (Model model) {
 		ListContainer container = postService.getPosts(1, 5, 5);
 		model.addAttribute("listContainer", container);
 		model.addAttribute("categories", categoryService.getCategories());
+		model.addAttribute("allTags", tagService.getTags());
 		return "blog/home";
 	}
 }

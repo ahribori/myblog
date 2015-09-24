@@ -12,7 +12,7 @@
 </c:if>
 <h2><span class="label label-success">${category.name}</span></h2>
 <c:if test="${tag!=null}">
-<h2><span class="label label-info">#${tag.name}</span></h2>
+<h2><span class="label label-info">#${tag}</span></h2>
 </c:if>
 <hr style="border:0px">
 <!-- Post -->
@@ -37,9 +37,9 @@
     <div class="panel panel-default">
       	<div class="panel-heading"><a href="#" class="pull-right">View all</a> 
       	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
-		<a href="${initParam.root}category/${post.categoryId}/page/1"><span class="label label-success">${post.category.name}</span></a> 
+		<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
 		<c:forEach var="tag" items="${post.tags}">
-		<a href="${initParam.root}tag/${tag.tagId}"><span class="label label-info">#${tag.name}</span></a>
+		<a href="${initParam.root}tag/${tag.name}"><span class="label label-info">#${tag.name}</span></a>
 		</c:forEach>
     </div>
        <div class="panel-body">

@@ -10,7 +10,7 @@
 	</ul>
     <ul class="nav hidden-xs" id="lg-menu">
     <c:forEach var="category" items="${categories}">
-        <li class="active"><a href="${initParam.root}category/${category.categoryId}/page/1"><i class="glyphicon glyphicon-${category.glyphicon}"></i> ${category.name} 
+        <li class="active"><a href="${initParam.root}category/${category.categoryId}"><i class="glyphicon glyphicon-${category.glyphicon}"></i> ${category.name} 
         <span style="color:white;background-color:black;" class="badge">${category.postCount}</span></a></li>
     </c:forEach>
     </ul>

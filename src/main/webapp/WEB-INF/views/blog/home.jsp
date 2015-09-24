@@ -5,6 +5,15 @@
 <!-- main col left --> 
 <div class="col-sm-5">
  	
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>#태그</h4></div>
+     	<div class="panel-body">
+	   	<c:forEach var="tag" items="${allTags}">
+		<a href="${initParam.root}tag/${tag.name}"><span class="label label-info">#${tag.name}</span></a>
+	   	</c:forEach>
+	   	</div>
+    </div> 	
+
  	<div class="panel panel-default">
       <div class="panel-heading"><h4>아리보리's 블로그?</h4></div>
       	<div class="panel-thumbnail"><img src="${initParam.root}resources/images/home/aribori.jpg" class="img-responsive"></div>
@@ -46,32 +55,6 @@
 	   	</div>
     </div> 	
     
-    <div class="panel panel-default">
-      <div class="panel-heading"><h4>#태그</h4></div>
-     	<div class="panel-body">
-	   	<span class="label label-primary">#태그</span> 
-		<span class="label label-success">#태그</span> 
-		<span class="label label-info">#태그</span> 
-		<span class="label label-warning">#태그</span> 
-		<span class="label label-danger">#태그</span>
-	   	<span class="label label-primary">#태그</span> 
-		<span class="label label-success">#태그</span> 
-		<span class="label label-info">#태그</span> 
-		<span class="label label-warning">#태그</span> 
-		<span class="label label-danger">#태그</span>
-	   	<span class="label label-primary">#태그</span> 
-		<span class="label label-success">#태그</span> 
-		<span class="label label-info">#태그</span> 
-		<span class="label label-warning">#태그</span> 
-		<span class="label label-danger">#태그</span>
-	   	<span class="label label-primary">#태그</span> 
-		<span class="label label-success">#태그</span> 
-		<span class="label label-info">#태그</span> 
-		<span class="label label-warning">#태그</span> 
-		<span class="label label-danger">#태그</span>
-	   	</div>
-    </div> 	
-
     <div class="well"> 
          <form class="form-horizontal" role="form">
           <h4>Contact Me!</h4>
@@ -92,9 +75,9 @@
      <div class="panel panel-default">
        	<div class="panel-heading"><a href="#" class="pull-right">View all</a> 
        	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
-			<a href="${initParam.root}category/${post.categoryId}/page/1"><span class="label label-success">${post.category.name}</span></a> 
+			<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
 			<c:forEach var="tag" items="${post.tags}">
-			<a href="${initParam.root}tag/${tag.tagId}"><span class="label label-info">#${tag.name}</span></a> 
+			<a href="${initParam.root}tag/${tag.name}"><span class="label label-info">#${tag.name}</span></a> 
 			</c:forEach>
 	    </div>
         <div class="panel-body">

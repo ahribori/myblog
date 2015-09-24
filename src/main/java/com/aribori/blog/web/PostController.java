@@ -1,5 +1,8 @@
 package com.aribori.blog.web;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aribori.blog.domain.Post;
+import com.aribori.blog.domain.Tag;
 import com.aribori.blog.service.CategoryService;
 import com.aribori.blog.service.PostService;
 import com.aribori.blog.service.TagService;
@@ -78,27 +82,33 @@ public class PostController {
 		return "blog/list";
 	}
 	
-	@RequestMapping(value="tag/{tag_id}", method=RequestMethod.GET)
-	public String getPostsByTag(@PathVariable String tag_id, Model model) {
-		if(tag_id!=null) {
-			int tagId = Integer.parseInt(tag_id);
-			model.addAttribute("listContainer", postService.getPostsByTag(1, 5, 5, tagId));
-			model.addAttribute("tag", tagService.getTag(tagId));
+	@RequestMapping(value="tag/{tag_name}", method=RequestMethod.GET)
+	public String getPostsByTag(@PathVariable String tag_name, Model model) throws Exception {
+		if(tag_name!=null) {
+			Tag tag = tagService.getTagByName(tag_name);
+			if(tag!=null) {
+				int tagId = tag.getTagId();
+				model.addAttribute("listContainer", postService.getPostsByTag(1, 5, 5, tagId));
+			}
+			model.addAttribute("tag", tag_name);
 		}
 		addGlobalAttribute(model);
 		return "blog/list";
 	}
 	
-	@RequestMapping(value="tag/{tag_id}/page/{page}", method=RequestMethod.GET)
-	public String getPostsByTag(@PathVariable String tag_id, @PathVariable String page, Model model) {
-		if(tag_id!=null) {
+	@RequestMapping(value="tag/{tag_name}/page/{page}", method=RequestMethod.GET)
+	public String getPostsByTag(@PathVariable String tag_name, @PathVariable String page, Model model) {
+		if(tag_name!=null) {
 			int currentPage = 1;
-			int tagId = Integer.parseInt(tag_id);
 			if(page!=null) {
 				currentPage = Integer.parseInt(page);
 			}
-			model.addAttribute("listContainer", postService.getPostsByTag(currentPage, 5, 5, tagId));
-			model.addAttribute("tag", tagService.getTag(tagId));
+			Tag tag = tagService.getTagByName(tag_name);
+			if(tag!=null) {
+				int tagId = tag.getTagId();
+				model.addAttribute("listContainer", postService.getPostsByTag(currentPage, 5, 5, tagId));
+			}
+			model.addAttribute("tag", tag_name);
 		}
 		addGlobalAttribute(model);
 		return "blog/list";

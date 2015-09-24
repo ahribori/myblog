@@ -11,6 +11,8 @@ public interface TagDao {
 
 	public Tag getTag(int tagId);
 
+	public Tag getTagByName(String name);
+
 	public List<Tag> getTags();
 
 	public Tag insertTag(Tag tag);
@@ -20,6 +22,7 @@ public interface TagDao {
 	public void deleteAll();
 
 	public List<Tag> getTagsByPostId(int postId);
+
 
 
 }
