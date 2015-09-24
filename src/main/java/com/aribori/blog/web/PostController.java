@@ -132,6 +132,7 @@ public class PostController {
 	
 	@RequestMapping(value="/post/write", method=RequestMethod.POST)
 	public String getWriteForm(Post post, Model model) {
+		model.addAttribute("categoryId", post.getCategoryId());
 		addGlobalAttribute(model);
 		return "blog/write";
 	}

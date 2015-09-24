@@ -4,6 +4,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <!DOCTYPE html>
 <div class="col-sm-12">
+<form action="${initParam.root}post/write" method="post">
+	<input type="hidden" name="categoryId" value="${category.categoryId}">
+	<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-pencil"></i> 여기에 글 쓰기</button>
+</form>
 <h2><span class="label label-success">${category.name}</span></h2>
 <hr style="border:0px">
 <!-- Post -->
@@ -14,6 +18,7 @@
 </div>
 <hr>
 </c:if>
+
 
 <c:forEach var="post" items="${listContainer.list}">
     <div class="panel panel-default">

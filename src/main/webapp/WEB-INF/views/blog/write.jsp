@@ -16,14 +16,20 @@
 		
 	});
 </script>
-
 <form:form action="${initParam.root}post" method="post" commandName="post">
 	
 	<label>카테고리</label>
 	<form:select name="categoryId" path="categoryId" class="form-control">
 		<option>------카테고리를 선택하세요------</option>
 		<c:forEach var="category" items="${categories}">
-		<option value="${category.categoryId}">${category.name}</option>
+			<c:choose>
+				<c:when test="${categoryId!=null && categoryId==category.categoryId}">
+				<option selected="selected" value="${category.categoryId}">${category.name}</option>
+				</c:when>
+				<c:otherwise>
+				<option value="${category.categoryId}">${category.name}</option>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 	</form:select>
 	<font color="red"><form:errors path="categoryId"></form:errors></font><br>
