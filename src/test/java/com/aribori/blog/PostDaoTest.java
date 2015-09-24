@@ -33,7 +33,7 @@ public class PostDaoTest {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 
-	Post post = new Post("제목", "부제목", "글쓴이", "컨텐츠");
+	Post post = new Post("제목", "글쓴이", "컨텐츠");
 	Category category = new Category("테스트 카테고리", 0, "cloud");
 	
 	/**

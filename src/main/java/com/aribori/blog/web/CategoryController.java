@@ -1,8 +1,11 @@
 package com.aribori.blog.web;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,13 +24,16 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value="/category/config")
-	public String categoryConfig(Model model) {
+	public String categoryConfig(Category category, Model model) {
 		addGlobalAttribute(model);
 		return "blog/category";
 	}
 	
 	@RequestMapping(value="/category", method=RequestMethod.POST)
-	public String insertCategory(Category category) {
+	public String insertCategory(@Valid Category category, BindingResult result, Model model) {
+		addGlobalAttribute(model);
+		if(result.hasErrors()) 
+			return "blog/category";
 		categoryService.insertCategory(category);
 		return "redirect:/category/config";
 	}

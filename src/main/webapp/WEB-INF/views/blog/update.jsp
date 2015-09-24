@@ -6,10 +6,10 @@
 
 <script src="${initParam.root}resources/ckeditor/ckeditor.js"></script>
 
-<form:form action="${initParam.root}post/${post.postId}" method="put">
+<form:form action="${initParam.root}post/${post.postId}" method="put" commandName="post">
 	
 	<label>카테고리</label>
-	<select name="categoryId" class="form-control">
+	<form:select name="categoryId" path="categoryId" class="form-control">
 		<option>------카테고리를 선택하세요------</option>
 		<c:forEach var="category" items="${categories}">
 			<c:choose>
@@ -21,15 +21,24 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-	</select><br>
+	</form:select>
+	<font color="red"><form:errors path="categoryId"></form:errors></font><br>
 	
 	<label>제목</label>
-	<input type="text" name="title" value="${post.title}" class="form-control" placeholder="제목을 입력하세요"><br>
+	<form:input type="text" name="title" path="title" value="${post.title}" class="form-control" placeholder="제목을 입력하세요"/>
+	<font color="red"><form:errors path="title"></form:errors></font><br>
 
 	<label>#태그</label>
 	<input type="text" name="tags" class="form-control" placeholder="#태그를 등록하세요(미구현)"><br>
 	
-    <textarea name="content" id="editor1" rows="10" cols="80">${post.content}</textarea>
+    <form:textarea name="content" path="content" id="editor1" rows="10" cols="80"></form:textarea>
+    <font color="red"><form:errors path="content"></form:errors></font><br>
+    
+    <script type="text/javascript">
+    	$(function(){
+    		$('#editor1').html('${post.content}');
+    	})
+    </script>
     
     <label></label>
     <button class="btn btn-lg btn-warning btn-block" type="submit">Update</button>

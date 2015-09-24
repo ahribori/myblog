@@ -6,29 +6,31 @@
 
 <script src="${initParam.root}resources/ckeditor/ckeditor.js"></script>
 
-<form action="${initParam.root}post" method="post">
+<form:form action="${initParam.root}post" method="post" commandName="post">
 	
 	<label>카테고리</label>
-	<select name="categoryId" class="form-control">
+	<form:select name="categoryId" path="categoryId" class="form-control">
 		<option>------카테고리를 선택하세요------</option>
 		<c:forEach var="category" items="${categories}">
 		<option value="${category.categoryId}">${category.name}</option>
 		</c:forEach>
-	</select><br>
+	</form:select>
+	<font color="red"><form:errors path="categoryId"></form:errors></font><br>
 	
 	<label>제목</label>
-	<input type="text" name="title" class="form-control" placeholder="제목을 입력하세요"><br>
+	<form:input type="text" name="title" path="title" class="form-control" placeholder="제목을 입력하세요"/>
+	<font color="red"><form:errors path="title"></form:errors></font><br>
 	
 	<label>#태그</label>
 	<input type="text" name="tags" class="form-control" placeholder="#태그를 등록하세요(미구현)"><br>
 	
-    <textarea name="content" id="editor1" rows="10" cols="80"></textarea>
-    
+    <form:textarea name="content" path="content" id="editor1" rows="10" cols="80"/>
+    <font color="red"><form:errors path="content"></form:errors></font><br>
     <label></label>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
     <label></label>
     
-</form>
+</form:form>
 
 <script src="${initParam.root}resources/js/application.js"></script>
 

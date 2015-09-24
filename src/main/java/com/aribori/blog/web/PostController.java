@@ -3,10 +3,12 @@ package com.aribori.blog.web;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +32,11 @@ public class PostController {
 		model.addAttribute("categories", categoryService.getCategories());
 	}
 
-	@RequestMapping(value="/category/{category_id}/post/{id}", method=RequestMethod.GET)
-	public String getPost(@PathVariable String category_id, @PathVariable String id, Model model,
+	@RequestMapping(value="/post/{id}", method=RequestMethod.GET)
+	public String getPost(@PathVariable String id, Model model,
 			@CookieValue(value = "getPostLog", required = false) Cookie cookie, 
 			HttpServletResponse response) {
-		if (category_id != null && id != null) {
+		if (id != null) {
 			try {
 				int postId = Integer.parseInt(id);
 				model.addAttribute("post", postService.getPost(postId, cookie, response));
@@ -44,6 +46,18 @@ public class PostController {
 		}
 		addGlobalAttribute(model);
 		return "blog/post";
+	}
+	
+	@RequestMapping(value="category/{category_id}", method=RequestMethod.GET)
+	public String getPostsByCategory(@PathVariable String category_id, Model model) {
+		if(category_id!=null) {
+			int currentPage = 1;
+			int categoryId = Integer.parseInt(category_id);
+			model.addAttribute("listContainer", postService.getPostsByCategory(currentPage, 5, 5, categoryId));
+			model.addAttribute("category", categoryService.getCategory(categoryId));
+		}
+		addGlobalAttribute(model);
+		return "blog/list";
 	}
 	
 	@RequestMapping(value="category/{category_id}/page/{page}", method=RequestMethod.GET)
@@ -73,7 +87,11 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/post", method=RequestMethod.POST)
-	public String insertPost(Post post) {
+	public String insertPost(@Valid Post post, BindingResult result, Model model) {
+		addGlobalAttribute(model);
+		if(result.hasErrors()) {
+			return "blog/write";
+		}
 		//TODO 회원/관리자 구현 후에 이 라인 수정해야함
 		post.setWriter("아리보리");
 		postService.insertPost(post);
@@ -82,7 +100,14 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/post/{id}", method=RequestMethod.PUT)
-	public String updatePost(@PathVariable String id, Post post) {
+	public String updatePost(@PathVariable String id, @Valid Post post, 
+			BindingResult result, Model model) {
+		
+		addGlobalAttribute(model);
+		if(result.hasErrors()) {
+			return "blog/update";
+		}
+		
 		if (id != null) {
 			int postId = Integer.parseInt(id);
 			post.setPostId(postId);
@@ -105,13 +130,13 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/post/write", method=RequestMethod.POST)
-	public String getWriteForm(Model model) {
+	public String getWriteForm(Post post, Model model) {
 		addGlobalAttribute(model);
 		return "blog/write";
 	}
 	
 	@RequestMapping(value="/post/update", method=RequestMethod.PUT)
-	public String getUpdateForm(int postId, Model model) {
+	public String getUpdateForm(int postId, Post post, Model model) {
 		model.addAttribute("post", postService.getPostNoHits(postId));
 		addGlobalAttribute(model);
 		return "blog/update";

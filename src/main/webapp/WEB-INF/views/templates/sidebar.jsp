@@ -8,7 +8,6 @@
   	<ul class="nav">
 	<li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
 	</ul>
-   
     <ul class="nav hidden-xs" id="lg-menu">
     <c:forEach var="category" items="${categories}">
         <li class="active"><a href="${initParam.root}category/${category.categoryId}/page/1"><i class="glyphicon glyphicon-${category.glyphicon}"></i> ${category.name} 
@@ -26,9 +25,6 @@
   	<c:forEach var="category" items="${categories}">
       	<li><a href="${initParam.root}category/${category.categoryId}/page/1" class="text-center"><i class="glyphicon glyphicon-${category.glyphicon}"></i></a></li>
   	</c:forEach>
-        <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
-      	<li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
-        <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
     </ul>
   
 </div>

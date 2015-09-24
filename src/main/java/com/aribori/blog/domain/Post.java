@@ -2,13 +2,22 @@ package com.aribori.blog.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 public class Post {
 	
 	private int postId;
+	@NumberFormat(style=Style.NUMBER)
 	private int categoryId;
+	@NotEmpty(message="제목을 입력하세요")
 	private String title;
-	private String subtitle;
+	private String tagString;
 	private String writer;
+	@NotEmpty(message="내용을 입력하세요")
 	private String content;
 	private int hits;
 	private Date regDate;
@@ -20,26 +29,11 @@ public class Post {
 		super();
 	}
 
-	public Post(String title, String subtitle, String writer, String content) {
+	public Post(String title, String writer, String content) {
 		super();
 		this.title = title;
-		this.subtitle = subtitle;
 		this.writer = writer;
 		this.content = content;
-	}
-
-	public Post(int postId, int categoryId, String title, String subtitle,
-			String writer, String content, int hits, Date regDate, Date modDate) {
-		super();
-		this.postId = postId;
-		this.categoryId = categoryId;
-		this.title = title;
-		this.subtitle = subtitle;
-		this.writer = writer;
-		this.content = content;
-		this.hits = hits;
-		this.regDate = regDate;
-		this.modDate = modDate;
 	}
 
 	public int getPostId() {
@@ -65,13 +59,13 @@ public class Post {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public String getSubtitle() {
-		return subtitle;
+	
+	public String getTagString() {
+		return tagString;
 	}
 
-	public void setSubtitle(String subtitle) {
-		this.subtitle = subtitle;
+	public void setTagString(String tagString) {
+		this.tagString = tagString;
 	}
 
 	public String getWriter() {
@@ -125,9 +119,8 @@ public class Post {
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", categoryId=" + categoryId
-				+ ", title=" + title + ", subtitle=" + subtitle + ", writer="
-				+ writer + ", content=" + content + ", hits=" + hits
-				+ ", regDate=" + regDate + ", modDate=" + modDate
+				+ ", title=" + title + ", subtitle=" +  writer + ", content=" + content 
+				+ ", hits=" + hits + ", regDate=" + regDate + ", modDate=" + modDate
 				+ ", category=" + category + "]";
 	}
 

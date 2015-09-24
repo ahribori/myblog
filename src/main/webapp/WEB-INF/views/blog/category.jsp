@@ -13,7 +13,6 @@
 					<th></th>
 					<th>#</th>
 					<th>카테고리명</th>
-					<th>순서</th>
 					<th>게시물 수</th>
 					<th>아이콘</th>
 					<th></th>
@@ -34,7 +33,6 @@
 					</td>
 					<td>${category.categoryId}</td>
 					<td>${category.name}</td>
-					<td>${category.priority}</td>
 					<td><span style="color:white;background-color:black;" class="badge">${category.postCount}</span></td>
 					<td><i class="glyphicon glyphicon-${category.glyphicon}"></i></td>
 					<td>
@@ -63,9 +61,11 @@
 	<div class="panel panel-default">
 	<div class="panel-heading"><h4><i class="glyphicon glyphicon-list"></i> 카테고리 만들기</h4></div>
 	<div class="panel-body">
-		<form:form action="${initParam.root}/category" method="post">
+		<form:form action="${initParam.root}/category" method="post" commandName="category">
 			<label>카테고리명</label>
-			<input type="text" name="name" class="form-control" placeholder="카테고리명을 입력하세요"><br>
+			<form:input type="text" name="name" path="name" class="form-control" placeholder="카테고리명을 입력하세요"/>
+		 	<font color="red"><form:errors path="name"/></font>
+			<br>
 			<label>아이콘 (추후에 iconpicker로 변경예정)</label>
 			<li>
 	          <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>

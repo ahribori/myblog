@@ -2,9 +2,15 @@ package com.aribori.blog.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Category {
 	
 	private int categoryId;
+	@Size(max=30, message="30자 이하만 가능합니다")
+	@NotEmpty(message="카테고리명을 입력하세요")
 	private String name;
 	private int postCount;
 	private int priority;

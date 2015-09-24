@@ -8,7 +8,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="postId" column="post_id"/>
 		<result property="categoryId" column="category_id"/>
 		<result property="title" column="title"/>
-		<result property="subtitle" column="subtitle"/>
 		<result property="writer" column="writer"/>
 		<result property="content" column="content"/>
 		<result property="hits" column="hits"/>
@@ -27,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<selectKey keyProperty="postId" resultType="int" order="AFTER">
 			select max(post_id) from post
 		</selectKey>
-		insert into post(category_id,title,subtitle,writer,content) 
-		values(#{categoryId},#{title},#{subtitle},#{writer},#{content})
+		insert into post(category_id,title,writer,content) 
+		values(#{categoryId},#{title},#{writer},#{content})
 	</insert>
 	
 	<select id="getPost" resultMap="postRM">
@@ -37,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updatePost">
-		update post set category_id=${categoryId},title=#{title},subtitle=#{subtitle},content=#{content},hits=#{hits} 
+		update post set category_id=${categoryId},title=#{title},content=#{content},hits=#{hits} 
 		where post_id=#{postId}
 	</update>
 	
