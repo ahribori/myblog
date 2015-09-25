@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#tagString').tagsinput({
-		  confirmKeys: [13, 32, 44]
+		 	confirmKeys: [13, 32, 44]
 		});
 	});
 </script>

@@ -8,16 +8,17 @@
 
 <script src="${initParam.root}resources/tagsinput/bootstrap-tagsinput.min.js"></script>
 <link href="${initParam.root}resources/tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
-<script type="text/javascript">
+<script>
 	$(function(){
 		$('#tagString').tagsinput({
-		  confirmKeys: [13, 32, 44]
+			confirmKeys: [13, 32, 44]
 		});
-	});
-	
-	function setTags(tag) {
-		$('#tagString').tagsinput('add', tag);
-	}
+		
+		<c:forEach var="tag" items="${post.tags}">
+		$('#tagString').tagsinput('add', '${tag.name}');
+		</c:forEach>
+		
+	})
 </script>
 
 <form:form id="post_update_form" action="${initParam.root}post/${post.postId}" method="put" commandName="post">
@@ -43,11 +44,6 @@
 
 	<label>#태그</label>
 	<input type="text" name="tagString" id="tagString" class="form-control" placeholder="Enter, 콤마(,)로 구분하여 여러개의 태그를 등록하세요)" style="display: none;"><br>
-	
-	<c:forEach var="tag" items="${post.tags}">
-		<script>setTags('${tag.name}')</script>
-		<script>setTags('${tag.name}')</script>
-	</c:forEach>
 	
     <form:textarea name="content" path="content" id="editor1" rows="10" cols="80"></form:textarea>
     <font color="red"><form:errors path="content"></form:errors></font><br>
