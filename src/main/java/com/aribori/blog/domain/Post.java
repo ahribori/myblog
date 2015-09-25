@@ -26,6 +26,7 @@ public class Post {
 	
 	private List<Tag> tags;
 	
+	private List<Image> images; 
 
 	public Post() {
 		super();
@@ -125,6 +126,14 @@ public class Post {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
+	
+	public List<Image> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
 
 	@Override
 	public String toString() {
@@ -132,8 +141,8 @@ public class Post {
 				+ ", title=" + title + ", tagString=" + tagString + ", writer="
 				+ writer + ", content=" + content + ", hits=" + hits
 				+ ", regDate=" + regDate + ", modDate=" + modDate
-				+ ", category=" + category + ", tags=" + tags + "]";
+				+ ", category=" + category + ", tags=" + tags + ", images="
+				+ images + "]";
 	}
-	
-	
+
 }

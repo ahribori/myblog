@@ -17,7 +17,7 @@ public interface PostService {
 
 	public Post getPostNoHits(int postId);
 
-	public void updatePost(int postId, Post post);
+	public void updatePost(int postId, Post post, HttpServletRequest request);
 
 	public void deletePost(int postId);
 	

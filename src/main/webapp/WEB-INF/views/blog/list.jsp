@@ -35,7 +35,7 @@
 
 <c:forEach var="post" items="${listContainer.list}">
     <div class="panel panel-default">
-      	<div class="panel-heading"><a href="#" class="pull-right">View all</a> 
+      	<div class="panel-heading"><a href="${initParam.root}post/${post.postId}" class="pull-right">View all</a> 
       	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
 		<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
 		<c:forEach var="tag" items="${post.tags}">
@@ -43,7 +43,10 @@
 		</c:forEach>
     </div>
        <div class="panel-body">
-         <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="${initParam.root}post/${post.postId}">${post.content}</a></p>
+         <c:if test="${!empty post.images}">
+         <p><img src="/blog/resources/images/post/${post.images[0].name}" style="max-height: 120px" class="img-thumbnail img-responsive pull-right"></p>
+         </c:if>
+         <p><a href="${initParam.root}post/${post.postId}">${post.content}</a></p>
          <div class="clearfix"></div>
          <hr>
          <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}

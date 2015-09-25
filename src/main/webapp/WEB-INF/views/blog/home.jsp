@@ -6,7 +6,7 @@
 <div class="col-sm-5">
  	
     <div class="panel panel-default">
-      <div class="panel-heading"><h4>#태그</h4></div>
+      <div class="panel-heading"><h4>#태그 (위에 있을수록 인기 있는 태그입니다.)</h4></div>
      	<div class="panel-body">
 	   	<c:forEach var="tag" items="${allTags}">
 		<a href="${initParam.root}tag/${tag.name}"><span class="label label-info">#${tag.name}</span></a>
@@ -76,7 +76,7 @@
 	<!-- Post -->
 	<c:forEach var="post" items="${listContainer.list}">
      <div class="panel panel-default">
-       	<div class="panel-heading"><a href="#" class="pull-right">View all</a> 
+       	<div class="panel-heading"><a href="${initParam.root}post/${post.postId}" class="pull-right">View all</a> 
        	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
 			<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
 			<c:forEach var="tag" items="${post.tags}">
@@ -84,12 +84,17 @@
 			</c:forEach>
 	    </div>
         <div class="panel-body">
-          <p><img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="${initParam.root}post/${post.postId}">${post.content}</a></p>
-          <div class="clearfix"></div>
-          <hr>
-          <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
-          <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
-          <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
+        	<p><a href="${initParam.root}post/${post.postId}">
+			<c:if test="${!empty post.images}">
+	        <img src="/blog/resources/images/post/${post.images[0].name}" style="max-height: 120px" class="img-thumbnail img-responsive pull-right">
+	        </c:if>
+	        ${post.content}
+	        </a></p>
+	        <div class="clearfix"></div>
+	        <hr>
+	        <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
+	        <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
+	        <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
         </div>
      </div>
 	</c:forEach>

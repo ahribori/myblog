@@ -141,7 +141,7 @@ public class PostController {
 	
 	@RequestMapping(value="/post/{id}", method=RequestMethod.PUT)
 	public String updatePost(@PathVariable String id, @Valid Post post, 
-			BindingResult result, Model model) {
+			BindingResult result, Model model, HttpServletRequest request) {
 		addGlobalAttribute(model);
 		if(result.hasErrors()) {
 			return "blog/update";
@@ -150,7 +150,7 @@ public class PostController {
 		if (id != null) {
 			int postId = Integer.parseInt(id);
 			post.setPostId(postId);
-			postService.updatePost(postId, post);
+			postService.updatePost(postId, post, request);
 		}
 		return "redirect:/post/"+post.getPostId();
 	}
