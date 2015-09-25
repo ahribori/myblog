@@ -53,9 +53,16 @@
     </div>
 </c:forEach>
 <!-- /Post -->
+
+
 <!-- Pagination -->
 <c:set var="page" value="${listContainer.page}"/>
 <c:if test="${!empty listContainer.list}">
+
+<c:choose>
+<c:when test="${category!=null}">
+
+<!-- if category -->
 <nav>
   <ul class="pagination">
     
@@ -94,7 +101,7 @@
   
   	<c:if test="${page.lastPageGroup==false}">
     <li><a href="#">...</a></li>
-    <li><a href="#">${page.pageCount}</a></li>
+    <li><a href="${initParam.root}category/${category.categoryId}/page/${page.pageCount}">${page.pageCount}</a></li>
   	</c:if>
   	
   	<c:choose>
@@ -107,7 +114,7 @@
   		</c:when>
   		<c:otherwise>
 	    <li>
-	      <a href="#" aria-label="Next">
+	      <a href="${initParam.root}category/${category.categoryId}/page/${page.currentPage+1}" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>
@@ -115,6 +122,74 @@
   	</c:choose>
   </ul>
 </nav>
+<!-- /if category -->
+</c:when>
+<c:otherwise>
+<!-- if tag -->
+<nav>
+  <ul class="pagination">
+    
+    <c:choose>
+    	<c:when test="${page.currentPage==1}">
+	    <li class="disabled">
+	      <a href="#" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+    	</c:when>
+    	<c:otherwise>
+	    <li>
+	      <a href="${initParam.root}tag/${tag}/page/${page.currentPage-1}" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+    	</c:otherwise>
+    </c:choose>
+    
+    <c:if test="${page.firstPageGroup==false}">
+    <li><a href="${initParam.root}tag/${tag}/page/1">1</a></li>
+    <li><a href="#">...</a></li>
+    </c:if>
+    
+    <c:forEach var="p" begin="${page.beginPage}" end="${page.endPage}">
+		<c:choose>
+			<c:when test="${page.currentPage==p}">
+    		<li class="active"><a href="#">${p}</a></li>
+			</c:when>
+			<c:otherwise>
+    		<li><a href="${initParam.root}tag/${tag}/page/${p}">${p}</a></li>
+			</c:otherwise>
+		</c:choose>
+    </c:forEach>
+  
+  	<c:if test="${page.lastPageGroup==false}">
+    <li><a href="#">...</a></li>
+    <li><a href="${initParam.root}tag/${tag}/page/${page.pageCount}">${page.pageCount}</a></li>
+  	</c:if>
+  	
+  	<c:choose>
+  		<c:when test="${page.currentPage==page.pageCount}">
+	    <li class="disabled">
+	      <a href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+  		</c:when>
+  		<c:otherwise>
+	    <li>
+	      <a href="${initParam.root}tag/${tag}/page/${page.currentPage+1}" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+  		</c:otherwise>
+  	</c:choose>
+  </ul>
+</nav>
+<!-- /if tag -->
+</c:otherwise>
+</c:choose>
+
+
 </c:if>
 <!-- /Pagination -->
 
