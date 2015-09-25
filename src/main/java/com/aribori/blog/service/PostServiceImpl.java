@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,7 +78,6 @@ public class PostServiceImpl implements PostService{
 		}
 		Post post = postDao.getPost(postId);
 		post.setTags(tagService.getTagsByPostId(post.getPostId()));
-		post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		return post;
 	}
 
@@ -85,7 +85,6 @@ public class PostServiceImpl implements PostService{
 	public Post getPostNoHits(int postId) {
 		Post post = postDao.getPost(postId);
 		post.setTags(tagService.getTagsByPostId(post.getPostId()));
-		post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		return post;
 	}
 
@@ -101,8 +100,15 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public void deletePost(int postId) {
+	public void deletePost(int postId, HttpServletRequest request) {
 		postDao.deletePost(postId);
+		List<Image> images = imageDao.getImagesByPostId(postId);
+		String contextPath = "resources" + File.separator + "images" + File.separator +"post" + File.separator;
+		String realPath = new HttpServletRequestWrapper(request).getRealPath("/") + contextPath;
+		for (Image image : images) {
+			imageDao.deleteImage(image.getImageId());
+			new File(realPath+image.getName()).delete();
+		}
 	}
 
 	@Override
@@ -110,9 +116,9 @@ public class PostServiceImpl implements PostService{
 		Page page = new Page(currentPage, postDao.getTotalCount());
 		List<Post> postList = postDao.getPosts(page);
 		for (Post post : postList) {
+			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -122,9 +128,9 @@ public class PostServiceImpl implements PostService{
 		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCount());
 		List<Post> postList = postDao.getPosts(page);
 		for (Post post : postList) {
+			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -132,12 +138,11 @@ public class PostServiceImpl implements PostService{
 	@Override
 	public ListContainer getPostsByCategory(int currentPage, int categoryId) {
 		Page page = new Page(currentPage, postDao.getTotalCountByCategory(categoryId));
-		System.out.println(postDao.getTotalCountByCategory(categoryId));
 		List<Post> postList = postDao.getPostsByCategory(categoryId, page);
 		for (Post post : postList) {
+			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -148,9 +153,9 @@ public class PostServiceImpl implements PostService{
 		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCountByCategory(categoryId));
 		List<Post> postList = postDao.getPostsByCategory(categoryId, page);
 		for (Post post : postList) {
+			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -160,9 +165,9 @@ public class PostServiceImpl implements PostService{
 		Page page = new Page(currentPage, postDao.getTotalCountByTag(tagId));
 		List<Post> postList = postDao.getPostsByTag(tagId, page);
 		for (Post post : postList) {
+			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -173,9 +178,9 @@ public class PostServiceImpl implements PostService{
 		Page page = new Page(currentPage, pageSize, pageGroupSize, postDao.getTotalCountByTag(tagId));
 		List<Post> postList = postDao.getPostsByTag(tagId, page);
 		for (Post post : postList) {
+			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setImages(imageDao.getImagesByPostId(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -240,6 +245,26 @@ public class PostServiceImpl implements PostService{
 		} // if end
 	}
 	
+	
+	public Post setExternalImages(Post post){
+		if(post!=null && post.getContent()!=null) {
+			String html = post.getContent();
+			Document doc = Jsoup.parse(html);
+			Elements media = doc.select("[src]");
+			if(media.size()!=0) {
+				for (Element img : media) {
+					if(img.tagName().equals("img")) {
+						String src =  img.attr("src");
+								post.setThumbnailImagePathList(new ArrayList<String>());
+								post.getThumbnailImagePathList().add(src);
+								break; //어차피 썸네일은 하나만 가져오면 되니까
+					}
+				}
+			}
+		}
+		return post;
+	}
+	
 	/**
 	 * post 객체를 받아 content 안의 img 태그를 파싱해서
 	 * 이미지 이름을 데이터베이스에 저장.
@@ -269,49 +294,71 @@ public class PostServiceImpl implements PostService{
 			String html = post.getContent();
 			Document doc = Jsoup.parse(html);
 			Elements media = doc.select("[src]");
-			
 			List<Image> dbList = imageDao.getImagesByPostId(post.getPostId());
 			
-			// Post 수정시 이미지가 추가되었으면 DB에도 추가
-			for (Element img : media) {
-				if(img.tagName().equals("img")) {
-					String src =  img.attr("src");
-					if(src.startsWith("/blog/resources/images/post/")) {
-						String name = src.substring(src.lastIndexOf("/") + 1, src.length());
-						for (Image dbImage : dbList) {
-							if(dbImage.getName().equals(name)) {
-								break;
-							} else {
+			if(dbList!=null && dbList.size()>0) { // 사진이 1개 이상 등록되어있던 게시물일 때
+				
+			
+				// Post 수정시 이미지가 추가되었으면 DB에도 추가
+				for (Element img : media) {
+					if(img.tagName().equals("img")) {
+						String src =  img.attr("src");
+						if(src.startsWith("/blog/resources/images/post/")) {
+							boolean insertFlag = true;
+							String name = src.substring(src.lastIndexOf("/") + 1, src.length());
+							for (Image dbImage : dbList) {
+								if(dbImage.getName().equals(name)) {
+									insertFlag = false;
+									break;
+								}
+							}
+							
+							if (insertFlag) {
 								imageDao.insertImage(new Image(post.getPostId(), name));
+								insertFlag = false;
 							}
 						}
 					}
 				}
-			}
+				
+				// Post 수정시 이미지가 삭제되었으면 DB와 Local에서 삭제
+				String contextPath = "resources" + File.separator + "images" + File.separator +"post" + File.separator;
+				String realPath = new HttpServletRequestWrapper(request).getRealPath("/") + contextPath;
+					for (Image dbImage : dbList) {
+						if(media.size()!=0) {
+							for (Element img : media) {
+								if(img.tagName().equals("img")) {
+									String src =  img.attr("src");
+									if(src.startsWith("/blog/resources/images/post/")) {
+										String name = src.substring(src.lastIndexOf("/") + 1, src.length());
+										if(dbImage.getName().equals(name)) {
+											break;
+										} else {
+											imageDao.deleteImage(dbImage.getImageId());
+											new File(realPath+dbImage.getName()).delete();
+										}
+									}
+								} 
+							}
+						} else {
+							imageDao.deleteImage(dbImage.getImageId());
+							new File(realPath+dbImage.getName()).delete();
+						}
+					}
 			
-			// Post 수정시 이미지가 삭제되었으면 DB와 Local에서 삭제
-			for (Image dbImage : dbList) {
+			} else { // 원래 사진이 하나도 없었던 게시물일 때
 				for (Element img : media) {
 					if(img.tagName().equals("img")) {
 						String src =  img.attr("src");
 						if(src.startsWith("/blog/resources/images/post/")) {
 							String name = src.substring(src.lastIndexOf("/") + 1, src.length());
-							System.out.println("dbImage = " + dbImage + "contentImage = " + name);
-							if(dbImage.getName().equals(name)) {
-								break;
-							} else {
-								imageDao.deleteImage(dbImage.getImageId());
-								String contextPath = "resources" + File.separator + "images" + File.separator +"post" + File.separator;
-								String realPath = new HttpServletRequestWrapper(request).getRealPath("/") + contextPath;
-								new File(realPath+dbImage.getName()).delete();
-							}
+							imageDao.insertImage(new Image(post.getPostId(), name));
 						}
 					}
 				}
 			}
-			
+		
+		
 		}
 	}
-	
-	
 }

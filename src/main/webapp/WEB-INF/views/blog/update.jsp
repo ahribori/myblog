@@ -20,11 +20,10 @@
 	}
 </script>
 
-<form:form action="${initParam.root}post/${post.postId}" method="put" commandName="post">
+<form:form id="post_update_form" action="${initParam.root}post/${post.postId}" method="put" commandName="post">
 	
 	<label>카테고리</label>
 	<form:select name="categoryId" path="categoryId" class="form-control">
-		<option>------카테고리를 선택하세요------</option>
 		<c:forEach var="category" items="${categories}">
 			<c:choose>
 				<c:when test="${category.categoryId==post.categoryId}">
@@ -52,13 +51,7 @@
 	
     <form:textarea name="content" path="content" id="editor1" rows="10" cols="80"></form:textarea>
     <font color="red"><form:errors path="content"></form:errors></font><br>
-    
-    <script type="text/javascript">
-    	$(function(){
-    		$('#editor1').text('${post.content}');
-    	})
-    </script>
-    
+
     <label></label>
     <button class="btn btn-lg btn-warning btn-block" type="submit">Update</button>
     <label></label>

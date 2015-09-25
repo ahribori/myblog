@@ -19,7 +19,7 @@ public interface PostService {
 
 	public void updatePost(int postId, Post post, HttpServletRequest request);
 
-	public void deletePost(int postId);
+	public void deletePost(int postId, HttpServletRequest request);
 	
 	public ListContainer getPosts(int currentPage);
 

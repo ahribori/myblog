@@ -26,7 +26,8 @@ public class Post {
 	
 	private List<Tag> tags;
 	
-	private List<Image> images; 
+	private List<String> thumbnailImagePathList;
+
 
 	public Post() {
 		super();
@@ -127,12 +128,13 @@ public class Post {
 		this.tags = tags;
 	}
 	
-	public List<Image> getImages() {
-		return images;
+
+	public List<String> getThumbnailImagePathList() {
+		return thumbnailImagePathList;
 	}
 
-	public void setImages(List<Image> images) {
-		this.images = images;
+	public void setThumbnailImagePathList(List<String> thumbnailImagePathList) {
+		this.thumbnailImagePathList = thumbnailImagePathList;
 	}
 
 	@Override
@@ -141,8 +143,10 @@ public class Post {
 				+ ", title=" + title + ", tagString=" + tagString + ", writer="
 				+ writer + ", content=" + content + ", hits=" + hits
 				+ ", regDate=" + regDate + ", modDate=" + modDate
-				+ ", category=" + category + ", tags=" + tags + ", images="
-				+ images + "]";
+				+ ", category=" + category + ", tags=" + tags
+				+ ", thumbnailImagePathList=" + thumbnailImagePathList + "]";
 	}
-
+	
+	
+	
 }

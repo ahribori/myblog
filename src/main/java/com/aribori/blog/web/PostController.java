@@ -128,7 +128,6 @@ public class PostController {
 	@RequestMapping(value="/post", method=RequestMethod.POST)
 	public String insertPost(@Valid Post post, BindingResult result, Model model) {
 		addGlobalAttribute(model);
-		System.out.println(post.getTagString());
 		if(result.hasErrors()) {
 			return "blog/write";
 		}
@@ -144,6 +143,7 @@ public class PostController {
 			BindingResult result, Model model, HttpServletRequest request) {
 		addGlobalAttribute(model);
 		if(result.hasErrors()) {
+			model.addAttribute("post", postService.getPostNoHits(Integer.parseInt(id)));
 			return "blog/update";
 		}
 		
@@ -156,13 +156,11 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/post/{id}", method=RequestMethod.DELETE)
-	public String deletePost(@PathVariable String id) {
+	public String deletePost(@PathVariable String id, HttpServletRequest request) {
 		if (id != null) {
 			int postId = Integer.parseInt(id);
-			System.out.println(id);
 			Post post = postService.getPostNoHits(postId);
-			System.out.println(post);
-			postService.deletePost(postId);
+			postService.deletePost(postId, request);
 			categoryService.downPostCount(post.getCategoryId());
 		}
 		return "redirect:/";

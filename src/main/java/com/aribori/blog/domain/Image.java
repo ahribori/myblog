@@ -13,6 +13,11 @@ public class Image {
 		super();
 	}
 	
+	public Image(String name) {
+		super();
+		this.name = name;
+	}
+
 	public Image(int postId, String name) {
 		super();
 		this.postId = postId;

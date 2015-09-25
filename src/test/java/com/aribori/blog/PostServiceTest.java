@@ -94,13 +94,13 @@ public class PostServiceTest {
 //		log.info("{}", post);
 //	}
 	
-	@Test
-	public void testDeletePost() {
-		postService.deletePost(post.getPostId());
-		assertNull(postDao.getPost(post.getPostId()));
-		log.info("delete post success.");
-	}
-	
+//	@Test
+//	public void testDeletePost() {
+//		postService.deletePost(post.getPostId());
+//		assertNull(postDao.getPost(post.getPostId()));
+//		log.info("delete post success.");
+//	}
+//	
 	@Test
 	public void testGetPosts() {
 		for (int i = 0; i < 30; i++) {

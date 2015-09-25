@@ -42,17 +42,19 @@
 		<a href="${initParam.root}tag/${tag.name}"><span class="label label-info">#${tag.name}</span></a>
 		</c:forEach>
     </div>
-       <div class="panel-body">
-         <c:if test="${!empty post.images}">
-         <p><img src="/blog/resources/images/post/${post.images[0].name}" style="max-height: 120px" class="img-thumbnail img-responsive pull-right"></p>
-         </c:if>
-         <p><a href="${initParam.root}post/${post.postId}">${post.content}</a></p>
-         <div class="clearfix"></div>
-         <hr>
-         <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
-         <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
-         <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
-       </div>
+     	<div class="panel-body">
+        	<p><a href="${initParam.root}post/${post.postId}">
+			<c:if test="${!empty post.thumbnailImagePathList}">
+	        <p><img src="${post.thumbnailImagePathList[0]}" style="max-width:300px;max-height: 120px" class="img-thumbnail img-responsive pull-right"></p>
+	        </c:if>
+	        ${post.content}
+	        </a></p>
+	        <div class="clearfix"></div>
+	        <hr>
+	        <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
+	        <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
+	        <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
+        </div>
     </div>
 </c:forEach>
 <!-- /Post -->
