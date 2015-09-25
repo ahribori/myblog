@@ -28,7 +28,8 @@ public class TagServiceImpl implements TagService {
 		String [] tags = post.getTagString().split(",");
 		
 		for (String name: tags) {
-			if(name.trim().replace(" ", "") != "") {
+			name = name.replace(" ", "");
+			if(name!= null && name != "") {
 				name = name.replaceAll("[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]", ""); // 특수문자 제거
 				Tag tag = tagDao.findTagByName(name);
 				if (tag == null) { // 새로운 태그
