@@ -22,6 +22,18 @@
     </form:form>
  	<hr>
 	${post.content}
+	
+	<hr>
+    <form>
+    <div class="input-group">
+      <div class="input-group-btn">
+      <button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
+      </div>
+      <input type="text" class="form-control" placeholder="Add a comment..">
+    </div>
+    </form>
+	
+	
 	</div>
 </div>
 <script src="${initParam.root}resources/js/application.js"></script>

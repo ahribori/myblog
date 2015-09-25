@@ -29,7 +29,7 @@ public class TagServiceImpl implements TagService {
 		
 		for (String name: tags) {
 			if(name.trim().replace(" ", "") != "") {
-					
+				name = name.replaceAll("[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]", ""); // 특수문자 제거
 				Tag tag = tagDao.findTagByName(name);
 				if (tag == null) { // 새로운 태그
 					tag = tagDao.insertTag(new Tag(name));
@@ -82,7 +82,10 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public Tag getTagByName(String name) {
-		return tagDao.getTagByName(name);
+		Tag tag = tagDao.getTagByName(name);
+		if (tag!=null)
+			tagDao.upUseCount(tag.getTagId());
+		return tag;
 	}
 	
 	

@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getTags" resultMap="tagRM">
-		select * from tag
+		select * from tag order by use_count desc
 	</select>
 	
 	<update id="updateTag">

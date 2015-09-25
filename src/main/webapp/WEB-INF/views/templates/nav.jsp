@@ -27,7 +27,7 @@
       </li>
       <li>
         <!--<a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>-->
-        <a href="javascript:document.write.submit()" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> 새 글 쓰기</a>
+        <a href="javascript:document.write.submit()" role="button" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> 새 글 쓰기</a>
         <form name="write" action="${initParam.root}post/write" method="post"></form>
       </li>
       <li>

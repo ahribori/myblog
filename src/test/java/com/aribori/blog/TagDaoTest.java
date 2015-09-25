@@ -79,4 +79,11 @@ public class TagDaoTest {
 		}
 	}
 	
+	@Test
+	public void test() {
+		String name="http://aribori.com.#$#@%^^";
+		name = name.replaceAll("[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]", "_");
+		System.out.println(name);
+	}
+	
 }

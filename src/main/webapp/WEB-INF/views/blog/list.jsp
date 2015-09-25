@@ -7,7 +7,7 @@
 <c:if test="${category!=null}">
 <form action="${initParam.root}post/write" method="post">
 	<input type="hidden" name="categoryId" value="${category.categoryId}">
-	<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-pencil"></i> 여기에 글 쓰기</button>
+	<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-pencil"></i> ${category.name}에 글 쓰기</button>
 </form>
 </c:if>
 <h2><span class="label label-success">${category.name}</span></h2>
