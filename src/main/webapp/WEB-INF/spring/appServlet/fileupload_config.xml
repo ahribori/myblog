@@ -8,21 +8,16 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8"></property>
 		<!-- -1은 제한 없음 5*1024*1024 -->
-		<property name="maxUploadSize" value="-1"></property>
+		<property name="maxUploadSize" value="10*1024*1024"></property>
 	</bean>
 
 	<!-- 파일다운로드를 위한 view를 설정 -->
 	<!-- <bean name="downloadView" class="org.kosta.springmvc26.controller.DownloadView"></bean> -->
 
 	<!-- upload path -->
-	<bean id="memberImg" class="java.lang.String">
+	<bean id="uploadPath" class="java.lang.String">
 		<constructor-arg>
-			<value>resources\\images\\member\\</value>
-		</constructor-arg>
-	</bean>
-	<bean id="boardImg" class="java.lang.String">
-		<constructor-arg>
-			<value>resources\\images\\board\\</value>
+			<value>resources\\images\\post\\</value>
 		</constructor-arg>
 	</bean>
 </beans>
