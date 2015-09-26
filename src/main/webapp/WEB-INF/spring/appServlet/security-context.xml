@@ -48,7 +48,7 @@
 		</authentication-provider>
 	</authentication-manager>
 	
-	<beans:bean id="customAuthenticationSuccessHandler" class="com.aribori.security.config.CustomAuthenticationSuccessHandler">
+	<beans:bean id="customAuthenticationSuccessHandler" class="com.aribori.common.security.CustomAuthenticationSuccessHandler">
 	    <beans:property name="targetUrlParameter" value="loginRedirect" />
 	    <beans:property name="useReferer" value="false" />
 	    <beans:property name="defaultUrl" value="/" />

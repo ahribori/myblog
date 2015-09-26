@@ -1,4 +1,4 @@
-package com.aribori.security.config;
+package com.aribori.common.security;
 
 import java.io.IOException;
 

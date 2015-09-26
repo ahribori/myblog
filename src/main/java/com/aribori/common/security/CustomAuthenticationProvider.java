@@ -1,4 +1,4 @@
-package com.aribori.security.config;
+package com.aribori.common.security;
 
 import java.util.ArrayList;
 import java.util.List;

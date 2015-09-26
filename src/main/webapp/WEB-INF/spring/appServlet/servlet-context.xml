@@ -51,14 +51,11 @@
 		<beans:property name="defaultEncoding" value="utf-8"/>
 	</beans:bean>
 	
-	<!-- Interceptor -->
-	<!-- 
 	<interceptors>
 	<interceptor>
 		<mapping path="/**" />
 		<exclude-mapping path="/resources/**" />
-		<beans:bean class="org.kosta.devnote.common.web.AuthCheckInterceptor"/>
+		<beans:bean class="com.aribori.common.interceptor.RequestCheckInterceptor"/>
 	</interceptor>
 	</interceptors>
-	 -->
 </beans:beans>
