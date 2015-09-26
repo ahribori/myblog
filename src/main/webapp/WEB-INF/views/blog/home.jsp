@@ -56,13 +56,13 @@
     </div> 	
     
     <div class="well"> 
-         <form class="form-horizontal" role="form">
+         <form action="${initParam.root}contact" method="post" class="form-horizontal" role="form">
           <h4>Contact Me!</h4>
            <div class="form-group" style="padding:14px;">
-	        <input type="email" class="form-control" placeholder="연락받으실 E-Mail 주소를 입력하세요"><br>
-            <textarea rows="6" class="form-control" placeholder="메세지를 입력하세요"></textarea>
+	        <input type="email" name="sender" class="form-control" placeholder="연락받으실 E-Mail 주소를 입력하세요"><br>
+            <textarea rows="6" name="message" class="form-control" placeholder="메세지를 입력하세요"></textarea>
           </div>
-          <button class="btn btn-primary pull-right" type="button">보내기</button><ul class="list-inline"><li><a href=""></a></li></ul>
+          <button class="btn btn-primary pull-right" type="submit">보내기</button><ul class="list-inline"><li><a href=""></a></li></ul>
         </form>
     </div>
  	

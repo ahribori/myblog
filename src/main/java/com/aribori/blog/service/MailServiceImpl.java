@@ -32,6 +32,7 @@ public class MailServiceImpl implements MailService{
 		}
 	}
 	
+	@Override
 	public void contactMe(ContactMe contactMe) {
 		String subject = contactMe.getSender() + " 이 보낸 메세지";
 		String content = contactMe.getSender() + " 이 보낸 메세지<br>"
