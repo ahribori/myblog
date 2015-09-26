@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <!-- top nav -->
 	<div class="navbar navbar-blue navbar-static-top">  
@@ -41,7 +42,12 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
         <ul class="dropdown-menu">
-          <li><a href="">로그인</a></li>
+		  <sec:authorize access="!isAuthenticated()">       
+          <li><a href="${initParam.root}user/login_form">로그인</a></li>
+          </sec:authorize>
+		  <sec:authorize access="isAuthenticated()">
+          <li><a href="${initParam.root}user/logout">로그아웃</a></li>
+		  </sec:authorize>       
         </ul>
       </li>
     </ul>

@@ -43,6 +43,7 @@
 	
 	<!-- 컴포넌트 스캔 -->
 	<context:component-scan base-package="com.aribori.blog.web" />
+	<context:component-scan base-package="com.aribori.user.web" />
 	
 	<!-- Spring Validation -->
 	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

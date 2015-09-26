@@ -12,4 +12,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/blog/{1}/{2}.jsp" />
 	</definition>
 	
+	<definition name="user/*" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/{1}.jsp" />
+	</definition>
+	
+	<definition name="user/*/*" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp" />
+	</definition>
+	
 </tiles-definitions>
