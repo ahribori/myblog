@@ -41,9 +41,6 @@
 	
 	<authentication-manager>
 		<authentication-provider>
-			<!-- <user-service>
-				<user name="admin" password="1234" authorities="ROLE_ADMIN" />
-			</user-service> -->
 			<jdbc-user-service data-source-ref="dataSource"/>
 		</authentication-provider>
 	</authentication-manager>
