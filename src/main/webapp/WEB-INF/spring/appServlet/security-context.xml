@@ -25,12 +25,12 @@
 		
 		<form-login 
 		
-		login-page="/user/login_form" 
-		login-processing-url="/user/login"
+		login-page="/login_form" 
+		login-processing-url="/login"
 		username-parameter="username" password-parameter="password" 
-		authentication-failure-url="/user/login_form?error=true" 
+		authentication-failure-url="/login_form?error=true" 
 		authentication-success-handler-ref="customAuthenticationSuccessHandler"/>
-		<logout invalidate-session="true" logout-url="/user/logout" logout-success-url="/" 
+		<logout invalidate-session="true" logout-url="/logout" logout-success-url="/" 
 		delete-cookies="JSESSIONID" />
 		
 		<session-management>

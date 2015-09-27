@@ -27,18 +27,18 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping(value = "/user/login_form")
+	@RequestMapping(value = "/login_form")
 	public String loginForm(Model model) {
 		addGlobalAttribute(model);
 		return "user/login";
 	}
 	
-	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
     public void login(HttpSession session) {
         logger.info("Welcome login! {}", session.getId());
     }
      
-    @RequestMapping(value = "/user/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public void logout(HttpSession session) {
         CustomUserDetails userDetails = (CustomUserDetails)session.getAttribute("userLoginInfo");
          

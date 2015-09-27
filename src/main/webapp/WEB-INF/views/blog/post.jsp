@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<script src="<c:url value='/resources/js/prism.js'/>"></script>
+<link href="<c:url value='/resources/css/prism.css'/>" rel="stylesheet">
 <div class="panel panel-default">
   <div class="panel-heading"><h4>#${post.postId}. ${post.title}</h4>
 	<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
@@ -38,6 +40,10 @@
 </div>
 <script src="${initParam.root}resources/js/application.js"></script>
 <script type="text/javascript">
+	$(function(){
+		$('pre').addClass('line-numbers');
+	})
+
 	function remove_post() {
 		var flag = confirm('정말 삭제하시겠습니까?');
 		if(flag) document.remove.submit();

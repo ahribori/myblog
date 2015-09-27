@@ -9,7 +9,7 @@
 	</div>
 	<div class="panel-body">
 	
-	<form action="${initParam.root}user/login" method="post">
+	<form action="${initParam.root}login" method="post">
 	  <div class="form-group">
 	    <label>Username</label>
 	    <input type="text" class="form-control" name="username" id="username" placeholder="Input your username">
@@ -18,7 +18,7 @@
 	    <label>Password</label>
 	    <input type="password" class="form-control" name="password" id="passsword" placeholder="Input your password">
 	  </div>
-	  <button type="submit" class="btn btn-primary">제출</button>
+	  <button type="submit" class="btn btn-primary">Request</button>
 	</form>			
 	
 	
@@ -28,6 +28,9 @@
 
 <script>
 	$(function(){
+		
+		$('#username').focus();
+		
 		if('${param.error}'=='true') {
 			alert('로그인 실패');
 		}
