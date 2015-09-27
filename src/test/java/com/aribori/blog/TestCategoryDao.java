@@ -20,7 +20,7 @@ import com.aribori.blog.domain.Category;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
-public class CategoryDaoTest {
+public class TestCategoryDao {
 
 	@Autowired
 	private CategoryDao categoryDao;

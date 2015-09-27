@@ -24,7 +24,7 @@ import com.aribori.blog.domain.Tag;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
-public class PostTagDaoTest {
+public class TestPostTagDao {
 	
 	@Autowired
 	private PostTagDao postTagDao;

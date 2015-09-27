@@ -21,7 +21,7 @@ import com.aribori.blog.domain.Category;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
-public class CategoryServiceTest {
+public class TestCategoryService {
 
 	@Autowired
 	private CategoryService categoryService;

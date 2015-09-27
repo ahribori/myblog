@@ -41,10 +41,10 @@
 	
 	<authentication-manager>
 		<authentication-provider>
-			<!-- <jdbc-user-service data-source-ref="dataSource"/> -->
-			<user-service>
+			<!-- <user-service>
 				<user name="admin" password="1234" authorities="ROLE_ADMIN" />
-			</user-service>
+			</user-service> -->
+			<jdbc-user-service data-source-ref="dataSource"/>
 		</authentication-provider>
 	</authentication-manager>
 	

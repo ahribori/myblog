@@ -14,7 +14,7 @@ import com.aribori.blog.domain.Image;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
-public class ImageDaoTest {
+public class TestImageDao {
 	
 	@Autowired
 	private ImageDao imageDao;

@@ -33,7 +33,7 @@ import com.aribori.common.lib.ListContainer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
-public class PostServiceTest {
+public class TestPostService {
 
 	@Autowired
 	private PostService postService;

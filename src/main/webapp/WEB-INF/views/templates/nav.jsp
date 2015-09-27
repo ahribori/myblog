@@ -43,10 +43,10 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
         <ul class="dropdown-menu">
 		  <sec:authorize access="!isAuthenticated()">       
-          <li><a href="${initParam.root}user/login_form">로그인</a></li>
+          <li><a href="${initParam.root}login_form">로그인</a></li>
           </sec:authorize>
 		  <sec:authorize access="isAuthenticated()">
-          <li><a href="${initParam.root}user/logout">로그아웃</a></li>
+          <li><a href="${initParam.root}logout">로그아웃</a></li>
 		  </sec:authorize>       
         </ul>
       </li>

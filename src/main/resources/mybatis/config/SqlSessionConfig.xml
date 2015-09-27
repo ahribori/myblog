@@ -14,6 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.aribori.blog.domain.Tag" alias="tag"/>
 		<typeAlias type="com.aribori.blog.domain.PostTag" alias="post_tag"/>
 		<typeAlias type="com.aribori.blog.domain.Image" alias="image"/>
+		<typeAlias type="com.aribori.user.domain.User" alias="user"/>
+		<typeAlias type="com.aribori.user.domain.Authority" alias="authority"/>
 	</typeAliases>
 	
 	<mappers>
@@ -22,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/config/tag.xml"/>
 		<mapper resource="mybatis/config/post_tag.xml"/>
 		<mapper resource="mybatis/config/image.xml"/>
+		<mapper resource="mybatis/config/user.xml"/>
 	</mappers>
 </configuration>
 

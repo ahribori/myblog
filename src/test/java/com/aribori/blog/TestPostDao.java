@@ -23,7 +23,7 @@ import com.aribori.common.lib.Page;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/test-context.xml")
-public class PostDaoTest {
+public class TestPostDao {
 
 	@Autowired
 	private PostDao postDao;
