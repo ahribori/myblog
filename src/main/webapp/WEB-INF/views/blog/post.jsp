@@ -2,11 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <script src="<c:url value='/resources/js/prism.js'/>"></script>
 <link href="<c:url value='/resources/css/prism.css'/>" rel="stylesheet">
 <div class="panel panel-default">
-  <div class="panel-heading"><h4>#${post.postId}. ${post.title}</h4>
+  <div class="panel-heading"><h4>${post.title}</h4>
 	<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
 	<c:forEach var="tag" items="${post.tags}">
 	<a href="${initParam.root}tag/${tag.name}"><span class="label label-info">#${tag.name}</span></a>
@@ -16,12 +17,14 @@
  	<i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
     <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
     <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
+    <sec:authorize access="isAuthenticated()">
     <button class="btn btn-danger btn-xs pull-right" onclick="remove_post()">삭제</button> 
     <button class="btn btn-warning btn-xs pull-right" onclick="javascript:document.update.submit()">수정</button>
     <form:form name="remove" action="${initParam.root}post/${post.postId}" method="delete"></form:form>
     <form:form name="update" action="${initParam.root}post/update" method="put">
     	<input type="hidden" name="postId" value="${post.postId}">
     </form:form>
+    </sec:authorize>
  	<hr>
 	${post.content}
 	

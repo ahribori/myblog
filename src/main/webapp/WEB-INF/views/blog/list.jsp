@@ -36,7 +36,7 @@
 <c:forEach var="post" items="${listContainer.list}">
     <div class="panel panel-default">
       	<div class="panel-heading"><a href="${initParam.root}post/${post.postId}" class="pull-right">View all</a> 
-      	<h4><a href="${initParam.root}post/${post.postId}">#${post.postId}. ${post.title}</a></h4> 
+      	<h4><a href="${initParam.root}post/${post.postId}">${post.title}</a></h4> 
 		<a href="${initParam.root}category/${post.categoryId}"><span class="label label-success">${post.category.name}</span></a> 
 		<c:forEach var="tag" items="${post.tags}">
 		<a href="${initParam.root}tag/${tag.name}"><span class="label label-info">#${tag.name}</span></a>
