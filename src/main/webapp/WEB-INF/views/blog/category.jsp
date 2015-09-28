@@ -66,8 +66,9 @@
 			<form:input type="text" name="name" path="name" class="form-control" placeholder="카테고리명을 입력하세요"/>
 		 	<font color="red"><form:errors path="name"/></font>
 			<br>
-			<label>아이콘 (추후에 iconpicker로 변경예정)</label>
-			<li>
+			<label>아이콘</label>
+			<input type="text" name="glyphicon" class="icon-picker" />
+			<!-- <li>
 	          <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 	          <span class="glyphicon-class">glyphicon glyphicon-asterisk</span>
 			  <input type="radio" name="glyphicon" value="asterisk" checked="checked">
@@ -166,10 +167,22 @@
 	          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 	          <span class="glyphicon-class">glyphicon glyphicon-remove</span>
 			  <input type="radio" name="glyphicon" value="remove">
-	        </li>
+	        </li> -->
 	        <label></label>
 	        <button type="submit" class="btn btn-primary btn-block">만들기</button>
 		</form:form>	
 	</div>
 	</div>
 </div>
+
+
+<!-- Bootstrap-Iconpicker -->
+<link rel="stylesheet" href="${initParam.root}resources/css/icon-picker.min.css"/>
+<!-- Bootstrap-Iconpicker -->
+<script type="text/javascript" src="${initParam.root}resources/js/iconPicker.min.js"></script>
+
+<script type="text/javascript">
+        $(function () {
+            $(".icon-picker").iconPicker();
+        });
+</script>
