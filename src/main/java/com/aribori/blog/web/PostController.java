@@ -3,6 +3,7 @@ package com.aribori.blog.web;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class PostController {
 	}
 
 	@RequestMapping(value="/post/{id}", method=RequestMethod.GET)
-	public String getPost(@PathVariable String id, Model model,
+	public String getPost(@PathVariable String id, Model model, HttpSession session,
 			@CookieValue(value = "getPostLog", required = false) Cookie cookie, 
 			HttpServletResponse response) {
 		if (id != null) {
@@ -49,6 +50,7 @@ public class PostController {
 				return "redirect:/";
 			}
 		}
+		session.invalidate();
 		addGlobalAttribute(model);
 		return "blog/post";
 	}
@@ -123,16 +125,30 @@ public class PostController {
 	}
 	
 	@RequestMapping(value="/post", method=RequestMethod.POST)
-	public String insertPost(@Valid Post post, BindingResult result, Model model) {
+	public String insertPost(@Valid Post post, BindingResult result, Model model, 
+			HttpSession session) {
 		addGlobalAttribute(model);
 		if(result.hasErrors()) {
 			return "blog/write";
 		}
 		//TODO 회원/관리자 구현 후에 이 라인 수정해야함
 		post.setWriter("아리보리");
-		postService.insertPost(post);
-		categoryService.upPostCount(post.getCategoryId());
-		return "redirect:/";
+		
+		if(session != null && session.getAttribute("session_post") != null) {
+			Post sessionPost = (Post) session.getAttribute("session_post");
+			if(!post.getWriter().equals(sessionPost.getWriter())) {
+				postService.insertPost(post);
+				categoryService.upPostCount(post.getCategoryId());
+			} else {
+				return "redirect:/post/" + sessionPost.getPostId();
+			}
+		} else {
+			postService.insertPost(post);
+			categoryService.upPostCount(post.getCategoryId());
+		}
+		session.setAttribute("session_post", post);
+		
+		return "redirect:/post/" + post.getPostId();
 	}
 	
 	@RequestMapping(value="/post/{id}", method=RequestMethod.PUT)
