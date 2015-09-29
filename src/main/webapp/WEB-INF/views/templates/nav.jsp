@@ -28,8 +28,8 @@
       </li>
       <li>
         <!--<a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>-->
-        <a href="javascript:document.write.submit()" role="button" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i> 새 글 쓰기</a>
-        <form name="write" action="${initParam.root}post/write" method="post"></form>
+        <a href="javascript:submitWriteForm();" role="button"><i class="glyphicon glyphicon-pencil"></i> 새 글 쓰기</a>
+        <form name="write" id="write_form" action="${initParam.root}post/write" method="post"></form>
       </li>
       <li>
       	<a href="${initParam.root}category/config"><i class="glyphicon glyphicon-list"></i> 카테고리 관리</a>
@@ -79,3 +79,8 @@
   </div>
   </div>
 </div>
+<script type="text/javascript">
+	function submitWriteForm() {
+		document.getElementById('write_form').submit();
+	}
+</script>
