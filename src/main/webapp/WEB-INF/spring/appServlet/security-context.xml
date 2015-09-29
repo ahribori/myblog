@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     
 	<http pattern="/resources/**" security="none"/>
+	<http pattern="/post/imageUpload" security="none"/>
 	
 	<http use-expressions="true">
 		<headers>
