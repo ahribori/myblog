@@ -188,6 +188,7 @@ public class PostServiceImpl implements PostService{
 	public String makeContentThumbnail(String content) {
 		String text = null;
 		Document doc = Jsoup.parseBodyFragment(content);
+		doc.select("pre").remove();
 		text = new HtmlToPlainText().getPlainText(doc);
 		if (text!=null && text.length()>200) {
 			text = text.substring(0, 200);
