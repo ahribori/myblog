@@ -325,6 +325,7 @@ public class PostServiceImpl implements PostService{
 				String contextPath = "resources" + File.separator + "images" + File.separator +"post" + File.separator;
 				String realPath = new HttpServletRequestWrapper(request).getRealPath("/") + contextPath;
 					for (Image dbImage : dbList) {
+						boolean deleteFlag = true;
 						if(media.size()!=0) {
 							for (Element img : media) {
 								if(img.tagName().equals("img")) {
@@ -332,18 +333,22 @@ public class PostServiceImpl implements PostService{
 									if(src.startsWith("/blog/resources/images/post/")) {
 										String name = src.substring(src.lastIndexOf("/") + 1, src.length());
 										if(dbImage.getName().equals(name)) {
+											deleteFlag = false;
 											break;
-										} else {
-											imageDao.deleteImage(dbImage.getImageId());
-											new File(realPath+dbImage.getName()).delete();
-										}
+										} 
 									}
 								} 
 							}
+						
 						} else {
+							deleteFlag = true;
+						}
+						
+						if (deleteFlag) {
 							imageDao.deleteImage(dbImage.getImageId());
 							new File(realPath+dbImage.getName()).delete();
 						}
+						
 					}
 			
 			} else { // 원래 사진이 하나도 없었던 게시물일 때
