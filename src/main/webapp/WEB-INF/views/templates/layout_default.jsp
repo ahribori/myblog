@@ -27,6 +27,12 @@
 	<script src="${initParam.root}resources/js/bootstrap.min.js"></script>
 	<script src="${initParam.root}resources/js/scripts.js"></script>
 	
+	<c:if test="${serverMessage!=null}">
+	<script type="text/javascript">
+		alert('${serverMessage}');
+	</script>
+	</c:if>
+	
 </head>
 <body>
 <div class="wrapper">
