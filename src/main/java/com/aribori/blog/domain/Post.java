@@ -21,7 +21,10 @@ public class Post {
 	private int hits;
 	private Date regDate;
 	private Date modDate;
+	private String calculatedRegDate;
+	private String calculatedModDate;
 	
+
 	private Category category;
 	
 	private List<Tag> tags;
@@ -111,6 +114,23 @@ public class Post {
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
 	}
+	
+
+	public String getCalculatedRegDate() {
+		return calculatedRegDate;
+	}
+
+	public void setCalculatedRegDate(String calculatedRegDate) {
+		this.calculatedRegDate = calculatedRegDate;
+	}
+
+	public String getCalculatedModDate() {
+		return calculatedModDate;
+	}
+
+	public void setCalculatedModDate(String calculatedModDate) {
+		this.calculatedModDate = calculatedModDate;
+	}
 
 	public Category getCategory() {
 		return category;
@@ -143,10 +163,10 @@ public class Post {
 				+ ", title=" + title + ", tagString=" + tagString + ", writer="
 				+ writer + ", content=" + content + ", hits=" + hits
 				+ ", regDate=" + regDate + ", modDate=" + modDate
-				+ ", category=" + category + ", tags=" + tags
-				+ ", thumbnailImagePathList=" + thumbnailImagePathList + "]";
+				+ ", calculatedRegDate=" + calculatedRegDate
+				+ ", calculatedModDate=" + calculatedModDate + ", category="
+				+ category + ", tags=" + tags + ", thumbnailImagePathList="
+				+ thumbnailImagePathList + "]";
 	}
-	
-	
 	
 }

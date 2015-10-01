@@ -53,7 +53,7 @@
 	        <hr>
 	        <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
 	        <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
-	        <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
+	        <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.calculatedRegDate}
         </div>
     </div>
 </c:forEach>

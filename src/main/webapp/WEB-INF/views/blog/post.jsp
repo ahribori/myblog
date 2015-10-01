@@ -16,7 +16,7 @@
  	<div class="panel-body">
  	<i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
     <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
-    <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.regDate}
+    <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.calculatedRegDate}
     <sec:authorize access="isAuthenticated()">
     <button class="btn btn-danger btn-xs pull-right" onclick="remove_post()">삭제</button> 
     <button class="btn btn-warning btn-xs pull-right" onclick="javascript:document.update.submit()">수정</button>
