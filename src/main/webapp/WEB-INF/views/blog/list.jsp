@@ -45,7 +45,7 @@
      	<div class="panel-body">
         	<p><a href="${initParam.root}post/${post.postId}">
 			<c:if test="${!empty post.thumbnailImagePathList}">
-	        <p><img src="${post.thumbnailImagePathList[0]}" style="max-width:300px;max-height: 120px" class="img-thumbnail img-responsive pull-right"></p>
+	        <p><img src="${post.thumbnailImagePathList[0]}" style="max-width:240px;max-height: 120px" class="img-thumbnail img-responsive pull-right"></p>
 	        </c:if>
 	        ${post.content}
 	        </a></p>
