@@ -77,16 +77,16 @@ public class PostServiceImpl implements PostService{
 			response.addCookie(cookie);
 		}
 		Post post = postDao.getPost(postId);
-		post.setTags(tagService.getTagsByPostId(post.getPostId()));
-		post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
+		if(post!=null)
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		return post;
 	}
 
 	@Override
 	public Post getPostNoHits(int postId) {
 		Post post = postDao.getPost(postId);
-		post.setTags(tagService.getTagsByPostId(post.getPostId()));
-		post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
+		if(post!=null)
+			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		return post;
 	}
 
@@ -121,7 +121,6 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -134,7 +133,6 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -147,7 +145,6 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -161,7 +158,6 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -174,7 +170,6 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -188,7 +183,6 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
-			post.setCalculatedRegDate(dateCalculate(post.getRegDate()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -207,28 +201,6 @@ public class PostServiceImpl implements PostService{
 		return text;
 	}
 	
-	public String dateCalculate(Date time) {
-		long currentTime = System.currentTimeMillis();
-		long inputTime = time.getTime();
-		long resultTime = ((currentTime - inputTime) / 1000);
-		String resultStr = null;
-
-		if (resultTime >= 60 * 60 * 24 * 365) {
-			resultStr = resultTime / (60 * 60 * 24 * 365) + "년 전";
-		} else if (resultTime >= 60 * 60 * 24 * 30) {
-			resultStr = resultTime / (60 * 60 * 24 * 30) + "개월 전";
-		} else if (resultTime >= 60 * 60 * 24) {
-			resultStr = resultTime / (60 * 60 * 24) + "일 전";
-		} else if (resultTime >= 60 * 60) {
-			resultStr = resultTime / (60 * 60) + "시간 전";
-		} else if (resultTime >= 60) {
-			resultStr = resultTime / (60) + "분 전";
-		} else {
-			resultStr = resultTime + "초 전";
-		}
-		return resultStr;
-	}
-
 	@Override
 	public void imageUpload(HttpServletRequest request,
 			HttpServletResponse response, MultipartFile upload) {

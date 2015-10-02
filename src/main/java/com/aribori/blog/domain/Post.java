@@ -105,6 +105,7 @@ public class Post {
 
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+		setCalculatedRegDate(dateCalculate(regDate));
 	}
 
 	public Date getModDate() {
@@ -155,6 +156,28 @@ public class Post {
 
 	public void setThumbnailImagePathList(List<String> thumbnailImagePathList) {
 		this.thumbnailImagePathList = thumbnailImagePathList;
+	}
+	
+	public String dateCalculate(Date time) {
+		long currentTime = System.currentTimeMillis();
+		long inputTime = time.getTime();
+		long resultTime = ((currentTime - inputTime) / 1000);
+		String resultStr = null;
+
+		if (resultTime >= 60 * 60 * 24 * 365) {
+			resultStr = resultTime / (60 * 60 * 24 * 365) + "년 전";
+		} else if (resultTime >= 60 * 60 * 24 * 30) {
+			resultStr = resultTime / (60 * 60 * 24 * 30) + "개월 전";
+		} else if (resultTime >= 60 * 60 * 24) {
+			resultStr = resultTime / (60 * 60 * 24) + "일 전";
+		} else if (resultTime >= 60 * 60) {
+			resultStr = resultTime / (60 * 60) + "시간 전";
+		} else if (resultTime >= 60) {
+			resultStr = resultTime / (60) + "분 전";
+		} else {
+			resultStr = resultTime + "초 전";
+		}
+		return resultStr;
 	}
 
 	@Override

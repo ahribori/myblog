@@ -45,7 +45,11 @@ public class PostController {
 		if (id != null) {
 			try {
 				int postId = Integer.parseInt(id);
-				model.addAttribute("post", postService.getPost(postId, cookie, response));
+				Post post =  postService.getPost(postId, cookie, response);
+				if(post != null)
+					model.addAttribute("post", post);
+				else 
+					return "redirect:/";
 			} catch (NumberFormatException e) {
 				return "redirect:/";
 			}
