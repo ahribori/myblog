@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 사용할 클래스에 대한 별칭을 명시한다.  -->
 	<typeAliases>
 		<typeAlias type="com.aribori.blog.domain.Post" alias="post"/>
+		<typeAlias type="com.aribori.blog.domain.Comment" alias="comment"/>
 		<typeAlias type="com.aribori.blog.domain.Category" alias="category"/>
 		<typeAlias type="com.aribori.blog.domain.Tag" alias="tag"/>
 		<typeAlias type="com.aribori.blog.domain.PostTag" alias="post_tag"/>
@@ -20,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<mappers>
 		<mapper resource="mybatis/config/post.xml"/>
+		<mapper resource="mybatis/config/comment.xml"/>
 		<mapper resource="mybatis/config/category.xml"/>
 		<mapper resource="mybatis/config/tag.xml"/>
 		<mapper resource="mybatis/config/post_tag.xml"/>

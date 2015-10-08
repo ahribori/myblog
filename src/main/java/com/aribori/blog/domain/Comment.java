@@ -133,7 +133,7 @@ public class Comment {
 		this.calculatedModDate = calculatedModDate;
 	}
 
-	public boolean isChild() {
+	public boolean getIsChild() {
 		return isChild;
 	}
 
@@ -141,7 +141,7 @@ public class Comment {
 		this.isChild = isChild;
 	}
 
-	public boolean isSecret() {
+	public boolean getIsSecret() {
 		return isSecret;
 	}
 
