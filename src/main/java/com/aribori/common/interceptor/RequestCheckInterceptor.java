@@ -21,14 +21,14 @@ public class RequestCheckInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		String referer = request.getHeader("Referer");
-		if(referer != null) {
+		if(referer != null && referer.trim().replace(" ", "")!="") {
 				referer = referer.replace("http://", "");
 				referer = referer.substring(0, referer.indexOf("/"));
 				if (!referer.contains("aribori.com") && !referer.contains("localhost")) {
 					// 로그에 기록
 					
 					String path = new HttpServletRequestWrapper(request).getRealPath("/") + "resources"
-							+ File.separator + "log";
+							+ File.separator + "log" + File.separator;
 					String fileName = "referer.txt";
 					BufferedWriter writer = null;
 					BufferedReader reader = null;
