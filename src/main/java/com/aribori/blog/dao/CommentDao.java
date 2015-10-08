@@ -19,6 +19,5 @@ public interface CommentDao {
 	public void deleteComment(int commentId);
 
 	public void deleteAll();
-
 	
 }
