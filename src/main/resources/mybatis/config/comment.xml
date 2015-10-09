@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select max(comment_id) from comment
 		</selectKey>
 		insert into comment(post_id,ref_id,writer,ip_addr,passwd,comment,is_child,is_secret) 
-		values(#{postId},#{refId},#{writer},${ipAddr},#{passwd},#{comment},#{isChild},${isSecret})
+		values(#{postId},#{refId},#{writer},#{ipAddr},#{passwd},#{comment},#{isChild},#{isSecret})
 	</insert>
 	
 	<select id="getComment" resultMap="commentRM">

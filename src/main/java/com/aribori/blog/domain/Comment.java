@@ -2,6 +2,10 @@ package com.aribori.blog.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Comment {
 
 	private int commentId;
@@ -10,12 +14,16 @@ public class Comment {
 	
 	private int refId;
 	
+	@NotEmpty(message="작성자를 입력하세요")
 	private String writer;
 	
 	private String ipAddr;
 	
+	@Size(min=4, max=20, message="비밀번호는 4자 이상 20자 이하만 가능합니다")
 	private String passwd;
 	
+	@Size(max=3000, message="3000자 이하만 가능합니다")
+	@NotEmpty(message="내용을 입력하세요")
 	private String comment;
 	
 	private int recommend;

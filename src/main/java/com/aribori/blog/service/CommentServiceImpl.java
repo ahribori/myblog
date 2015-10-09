@@ -20,8 +20,10 @@ public class CommentServiceImpl implements CommentService {
 		if(comment != null) {
 			if(comment.getRefId()==0)
 				commentDao.insertComment(comment);
-			else
+			else {
+				comment.setChild(true);
 				commentDao.insertChildComment(comment);
+			}
 		}
 		return comment;
 	}
