@@ -69,11 +69,9 @@ public class CommentController {
 			Comment sessionComment = (Comment) session.getAttribute("session_comment");
 			if(!comment.getIpAddr().equals(sessionComment.getIpAddr())) {
 				commentService.insertComment(comment);
-				System.out.println("!comment.getIpAddr().equals(sessionComment.getIpAddr())");
 			}
 		} else {
 			commentService.insertComment(comment);
-			System.out.println("session == null");
 		}
 		session.setAttribute("session_comment", comment);
 		

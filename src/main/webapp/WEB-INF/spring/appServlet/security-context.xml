@@ -18,6 +18,7 @@
     	
 		<intercept-url pattern="/post/**" method="GET" access="permitAll"/>
 		<intercept-url pattern="/post/**/comment" access="permitAll"/>
+		<intercept-url pattern="/post/**/comment/**" access="permitAll"/>
 		<intercept-url pattern="/post/**" access="hasAuthority('ROLE_ADMIN')"/>
 		<intercept-url pattern="/category/config" access="hasAuthority('ROLE_ADMIN')"/>
 		<intercept-url pattern="/category/**" method="GET" access="permitAll"/>

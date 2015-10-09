@@ -46,8 +46,13 @@
 		    <font style="color: #A4A4A4; font-size: 12px">
 		    ${comment.calculatedRegDate} | [${comment.ipAddr}] | 
 		    <i class="glyphicon glyphicon-pencil"></i>
-		  	<i class="glyphicon glyphicon-remove"></i>
+		    <a href="#" onclick="open_removecomment_form('${comment.commentId}')"><i class="glyphicon glyphicon-remove"></i></a>
 		    </font>
+	    	<form:form id="removeComment_${comment.commentId}" class = "removeCommentForm" 
+	    	style="display: inline;" action="${initParam.root}/post/${post.postId}/comment/${comment.commentId}" method="DELETE">
+	    		<input type="password" name="passwd" placeholder="비밀번호를 입력하세요">
+	    		<button type="submit">삭제</button>
+	    	</form:form>
 		    <div>${comment.comment}</div>
 		  </div>
 		</div>
@@ -66,8 +71,13 @@
 		    <font style="color: #A4A4A4; font-size: 12px">
 		    ${comment.calculatedRegDate} | [${comment.ipAddr}] | 
 		    <i class="glyphicon glyphicon-pencil"></i>
-		  	<i class="glyphicon glyphicon-remove"></i>
+		  	<a href="#" onclick="open_removecomment_form('${comment.commentId}')"><i class="glyphicon glyphicon-remove"></i></a>
 		    </font>
+		    <form:form id="removeComment_${comment.commentId}" class = "removeCommentForm" 
+	    	style="display: inline;" action="${initParam.root}/post/${post.postId}/comment/${comment.commentId}" method="DELETE">
+	    		<input type="password" name="passwd" placeholder="비밀번호를 입력하세요">
+	    		<button type="submit">삭제</button>
+	    	</form:form>
 		    <div>${comment.comment}</div>
 		  </div>
 		</div>
@@ -84,8 +94,13 @@
 		    <font style="color: #A4A4A4; font-size: 12px">
 		    ${comment.calculatedRegDate} | [${comment.ipAddr}] | 
 		    <i class="glyphicon glyphicon-pencil"></i>
-		  	<i class="glyphicon glyphicon-remove"></i>
+		  	<a href="#" onclick="open_removecomment_form('${comment.commentId}')"><i class="glyphicon glyphicon-remove"></i></a>
 		    </font>
+		    <form:form id="removeComment_${comment.commentId}" class = "removeCommentForm" 
+	    	style="display: inline;" action="${initParam.root}/post/${post.postId}/comment/${comment.commentId}" method="DELETE">
+	    		<input type="password" name="passwd" placeholder="비밀번호를 입력하세요">
+	    		<button type="submit">삭제</button>
+	    	</form:form>
 		    <div style="color: red">관리자만 볼 수 있는 비밀댓글입니다.</div>
 		  </div>
 		</div>
@@ -101,10 +116,15 @@
 		  <div class="media-body">
 		    <strong style="font-size: 16px">${comment.writer}</strong> 
 		    <font style="color: #A4A4A4; font-size: 12px">
-		    ${comment.calculatedRegDate} | [${comment.ipAddr}] | <a href="#" onclick="open_recomment_form(${comment.commentId})">댓글 달기</a> |
+		    ${comment.calculatedRegDate} | [${comment.ipAddr}] | <a href="#" onclick="open_recomment_form(${comment.commentId})">[댓글 달기]</a> |
 		    <i class="glyphicon glyphicon-pencil"></i>
-		  	<i class="glyphicon glyphicon-remove"></i>
+		  	<a href="#" onclick="open_removecomment_form('${comment.commentId}')"><i class="glyphicon glyphicon-remove"></i></a>
 		    </font>
+		    <form:form id="removeComment_${comment.commentId}" class = "removeCommentForm" 
+	    	style="display: inline;" action="${initParam.root}/post/${post.postId}/comment/${comment.commentId}" method="DELETE">
+	    		<input type="password" name="passwd" placeholder="비밀번호를 입력하세요">
+	    		<button type="submit">삭제</button>
+	    	</form:form>
 		    <div>${comment.comment}</div>
 		  </div>
 		</div>
@@ -162,9 +182,12 @@
 </div>
 <script src="${initParam.root}resources/js/application.js"></script>
 <script type="text/javascript">
+
+	
 	$(function(){
 		$('pre').addClass('line-numbers');
 		$('.recommentFormDiv').hide();
+		$('.removeCommentForm').hide();
 		
 		$('form[name=commentForm]').submit(function(){
 			return validForm(this);
@@ -189,14 +212,27 @@
 	
 	var open_recomment_form_no = 0;
 	
-	function open_recomment_form(commentNo) {
-		if(open_recomment_form_no != commentNo) {
+	function open_recomment_form(commentId) {
+		if(open_recomment_form_no != commentId) {
 			$('.recommentFormDiv').hide();
-			$('#recommentFormDiv_'+commentNo).show(100);
-			open_recomment_form_no = commentNo;
+			$('#recommentFormDiv_'+commentId).show(100);
+			open_recomment_form_no = commentId;
 		} else {
 			$('.recommentFormDiv').hide(100);
 			open_recomment_form_no = 0;
+		}
+	}
+	
+	var open_removecomment_form_no = 0;
+	
+	function open_removecomment_form(commentId) {
+		if(open_removecomment_form_no != commentId) {
+			$('.removeCommentForm').hide();
+			$('#removeComment_'+commentId).show();
+			open_removecomment_form_no = commentId;
+		} else {
+			open_removecomment_form_no = 0;
+			$('.removeCommentForm').hide();
 		}
 	}
 
