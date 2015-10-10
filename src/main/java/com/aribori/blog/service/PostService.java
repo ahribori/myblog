@@ -35,7 +35,7 @@ public interface PostService {
 	public ListContainer getPostsByTag(int currentPage, int pageSize, int pageGroupSize, int tagId);
 
 	public void imageUpload(HttpServletRequest request,
-			HttpServletResponse response, MultipartFile upload);
+			HttpServletResponse response, MultipartFile upload) throws Exception;
 
 
 

@@ -207,6 +207,10 @@ public class PostController {
 	@RequestMapping(value="/post/imageUpload", method=RequestMethod.POST)
 	public void imageUpload(HttpServletRequest request, HttpServletResponse response, 
 			MultipartFile upload) {
-		postService.imageUpload(request, response, upload);
+		try {
+			postService.imageUpload(request, response, upload);
+		} catch (Exception e) {
+			request.setAttribute("message", e.getMessage());
+		}
 	}
 }

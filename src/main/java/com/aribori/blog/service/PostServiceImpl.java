@@ -203,7 +203,7 @@ public class PostServiceImpl implements PostService{
 	
 	@Override
 	public void imageUpload(HttpServletRequest request,
-			HttpServletResponse response, MultipartFile upload) {
+			HttpServletResponse response, MultipartFile upload) throws Exception {
 		
 		if(upload!=null && upload.getSize()!=0) {
 			
@@ -239,10 +239,11 @@ public class PostServiceImpl implements PostService{
 		                + "','이미지를 업로드 하였습니다.'"
 		                + ")</script>");
 		        
-	        } catch (IOException e) {
-	        	e.printStackTrace();
 	        } finally {
-	        	printWriter.flush();
+	        	if(printWriter != null) {
+	        		printWriter.flush();
+	        		printWriter.close();
+	        	}
 	        } // try-catch end
 			
 		} // if end
