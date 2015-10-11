@@ -35,7 +35,7 @@ public class CommentServiceImpl implements CommentService {
 			String ipAddr = comment.getIpAddr();
 			if (ipAddr != null) {
 				String[] piece = ipAddr.split("\\.");
-				if (ipAddr.length() == 4) {
+				if (piece.length == 4) {
 					String star = "";
 					for (int i = 0; i < piece[1].length(); i++) {
 						star += "*";
