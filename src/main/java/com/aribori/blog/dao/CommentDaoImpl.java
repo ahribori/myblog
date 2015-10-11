@@ -15,6 +15,11 @@ public class CommentDaoImpl implements CommentDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
+	public int getCount(int postId) {
+		return sqlSessionTemplate.selectOne("comment.getCount", postId);
+	}
+
+	@Override
 	public Comment insertComment(Comment comment) {
 		sqlSessionTemplate.insert("comment.insertComment", comment);
 		sqlSessionTemplate.update("comment.syncRefNo", comment);
@@ -51,6 +56,5 @@ public class CommentDaoImpl implements CommentDao {
 	public void deleteAll() {
 		sqlSessionTemplate.delete("comment.deleteAll");
 	}
-
 
 }

@@ -19,6 +19,7 @@ public class Post {
 	@NotEmpty(message="내용을 입력하세요")
 	private String content;
 	private int hits;
+	private int comments; 
 	private Date regDate;
 	private Date modDate;
 	private String calculatedRegDate;
@@ -97,6 +98,14 @@ public class Post {
 
 	public void setHits(int hits) {
 		this.hits = hits;
+	}
+	
+	public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
 	}
 
 	public Date getRegDate() {

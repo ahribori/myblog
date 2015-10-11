@@ -210,7 +210,8 @@ public class PostController {
 		try {
 			postService.imageUpload(request, response, upload);
 		} catch (Exception e) {
-			request.setAttribute("message", e.getMessage());
+			e.printStackTrace();
+			request.setAttribute("exception", e.getMessage());
 		}
 	}
 }

@@ -52,7 +52,7 @@
 	        <div class="clearfix"></div>
 	        <hr>
 	        <i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
-	        <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
+	        <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i> ${post.comments}
 	        <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.calculatedRegDate}
         </div>
     </div>

@@ -1,7 +1,6 @@
 package com.aribori.blog.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.aribori.blog.dao.CommentDao;
 import com.aribori.blog.dao.ImageDao;
 import com.aribori.blog.dao.PostDao;
 import com.aribori.blog.domain.Image;
@@ -44,6 +44,9 @@ public class PostServiceImpl implements PostService{
 	
 	@Autowired
 	private ImageDao imageDao;
+	
+	@Autowired
+	private CommentDao commentDao;
 	
 	@Transactional
 	@Override
@@ -77,6 +80,7 @@ public class PostServiceImpl implements PostService{
 			response.addCookie(cookie);
 		}
 		Post post = postDao.getPost(postId);
+			post.setComments(commentDao.getCount(postId));
 		if(post!=null)
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		return post;
@@ -85,6 +89,7 @@ public class PostServiceImpl implements PostService{
 	@Override
 	public Post getPostNoHits(int postId) {
 		Post post = postDao.getPost(postId);
+		post.setComments(commentDao.getCount(postId));
 		if(post!=null)
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
 		return post;
@@ -121,6 +126,7 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+			post.setComments(commentDao.getCount(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -133,6 +139,7 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+			post.setComments(commentDao.getCount(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -145,6 +152,7 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+			post.setComments(commentDao.getCount(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -158,6 +166,7 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+			post.setComments(commentDao.getCount(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -170,6 +179,7 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+			post.setComments(commentDao.getCount(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}
@@ -183,6 +193,7 @@ public class PostServiceImpl implements PostService{
 			post = setExternalImages(post);
 			post.setContent(makeContentThumbnail(post.getContent()));
 			post.setTags(tagService.getTagsByPostId(post.getPostId()));
+			post.setComments(commentDao.getCount(post.getPostId()));
 		}
 		return new ListContainer(postList, page);
 	}

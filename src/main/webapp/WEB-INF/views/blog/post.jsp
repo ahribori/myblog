@@ -15,7 +15,7 @@
   </div>
  	<div class="panel-body">
  	<i class="glyphicon glyphicon glyphicon-eye-open"></i> ${post.hits}
-    <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i>
+    <i class="glyphicon glyphicon glyphicon glyphicon-comment"></i> ${post.comments}
     <i class="glyphicon glyphicon glyphicon glyphicon-time"></i> ${post.calculatedRegDate}
     <sec:authorize access="isAuthenticated()">
     <button class="btn btn-danger btn-xs pull-right" onclick="remove_post()">삭제</button> 
@@ -28,7 +28,6 @@
  	<hr>
 	${post.content}
 	
-	<hr>
 	<!-- Comment -->
 	
 	<c:forEach var="comment" items="${comments}">

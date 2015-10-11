@@ -5,6 +5,8 @@ import java.util.List;
 import com.aribori.blog.domain.Comment;
 
 public interface CommentDao {
+	
+	public int getCount(int postId);
 
 	public Comment insertComment(Comment comment);
 
