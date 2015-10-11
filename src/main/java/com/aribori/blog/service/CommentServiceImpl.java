@@ -30,7 +30,23 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public List<Comment> getComments(int postId) {
-		return commentDao.getComments(postId);
+		List<Comment> comments = commentDao.getComments(postId);
+		for (Comment comment : comments) {
+			String ipAddr = comment.getIpAddr();
+			if (ipAddr != null) {
+				String[] piece = ipAddr.split("\\.");
+				if (ipAddr.length() == 4) {
+					String star = "";
+					for (int i = 0; i < piece[1].length(); i++) {
+						star += "*";
+					}
+					piece[1] = star;
+					ipAddr = piece[0] + "." + piece[1] + "." + piece[2] + "." + piece[3];
+					comment.setIpAddr(ipAddr);
+				}
+			}
+		}
+		return comments;
 	}
 
 	@Override
