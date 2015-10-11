@@ -11,6 +11,8 @@ public interface CategoryService {
 	public Category getCategory(int categoryId);
 
 	public List<Category> getCategories();
+	
+	public void updateCategory(Category category);
 
 	public void deleteCategory(int categoryId);
 

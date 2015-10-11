@@ -38,6 +38,15 @@ public class CategoryController {
 		return "redirect:/category/config";
 	}
 	
+	@RequestMapping(value="/category", method=RequestMethod.PUT)
+	public String updateCategory(@Valid Category category, BindingResult result, Model model) {
+		addGlobalAttribute(model);
+		if(result.hasErrors()) 
+			return "blog/category";
+		categoryService.updateCategory(category);
+		return "redirect:/category/config";
+	}
+	
 	@RequestMapping(value="/category/{id}", method=RequestMethod.DELETE)
 	public String deleteCategory(@PathVariable int id, Model model) {
 		categoryService.deleteCategory(id);
