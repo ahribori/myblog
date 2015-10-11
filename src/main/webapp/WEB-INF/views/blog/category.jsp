@@ -76,7 +76,7 @@
 	
 <div class="col-sm-4">
 	<div id="category_update_div" class="panel panel-default">
-	<div class="panel-heading"><h4><i class="glyphicon glyphicon-list"></i> 카테고리 수정</h4></div>
+	<div class="panel-heading"><h4><i class="glyphicon glyphicon-wrench"></i> 카테고리 수정</h4></div>
 	<div class="panel-body">
 		<form:form name="category_update_form" action="${initParam.root}/category" method="put" commandName="category">
 			<label>카테고리명</label>
@@ -88,7 +88,7 @@
 	        <label></label>
 	        <input type="hidden" name="categoryId" value="">
 	        <input type="hidden" name="priority" value="">
-	        <button type="submit" class="btn btn-warning btn-block">수정</button>
+	        <button type="submit" class="btn btn-warning btn-block"><i class="glyphicon glyphicon-wrench"></i> 수정</button>
 		</form:form>	
 	</div>
 	</div>
@@ -104,7 +104,7 @@
 			<label>아이콘</label>
 			<input type="text" name="glyphicon" class="icon-picker" />
 	        <label></label>
-	        <button type="submit" class="btn btn-primary btn-block">만들기</button>
+	        <button type="submit" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-list"></i> 만들기</button>
 		</form:form>	
 	</div>
 	</div>
